@@ -1,0 +1,32 @@
+.titlename{  /* 7.16 소희시인*/
+    margin-top: -200px;
+    color: #000000;
+    text-align: center;
+
+}
+
+h2, p {
+    text-align: center;
+}
+.btnall {
+    margin-top: 170px;
+    margin-bottom: -110px;
+    text-align: center;
+}
+.btn1{
+    width: 200px;
+    height:50px;
+    font-size: 25px;
+}
+
+.table {
+    width: 700px;
+    margin:auto;
+}
+.th {
+    text-align: center;
+}
+
+.tb {
+    text-align: center;
+}

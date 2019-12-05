@@ -1,0 +1,251 @@
+body {
+    /*font-family: 'Noto Sans KR', sans-serif;*/
+    font-size: 12px;
+}
+.mx_auto{
+
+}
+#content_home {
+    width:85%;
+}
+
+div#homeimg {  /*이미지 두개*/
+    /*top: 100px;*/
+    /*background: #ddd;*/
+    /*padding: 5px 0 1px 0;*/
+    text-align: center;
+}
+
+.line {
+    height: 3px;
+    width: 55px;
+    display: inline-block;
+    background: #01a252;
+    margin: 0 auto;
+    text-align: center;
+}
+section{
+    margin-top: 40px;
+}
+.main1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+.main2 {
+    color: black;
+    margin: 0 auto;
+}
+
+.main2 p {
+    display: inline-block;
+}
+.btn {
+    padding: 5px 35px;
+    font-size: 15px;
+    margin: 4% 5.5% 4% 4.5%;
+}
+
+/*.btn:hover, .btn-outline-primary:hover, .btn:active, .btn-outline-primary:active{*/
+    /*background-color: #01a252;*/
+    /*border-color: #01a252;*/
+/*}*/
+
+#board {text-align: left;}
+
+h2 {
+    /*margin-left: 150px;*/
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+}
+
+#applist {
+    margin: 0 auto;
+}
+
+.lnr{width: 25px; height: 35px; margin-left: 20px}
+
+td a {
+    font-size: 18px;
+    color: #01a252;
+}
+td {
+    vertical-align: middle;
+    font-size: 19px;
+}
+
+.more a img {
+    width: 36px;
+    vertical-align: middle;
+}
+.more{width: 36px;}
+/*게시판 내용*/
+.board_cnt {
+    font-size: 19px;
+}
+
+/*이케아 가족 이야기*/
+#funi {
+    margin-top: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel-indicators li { visibility: hidden; }
+
+#myCarousel {
+    margin: auto;
+}
+/*.card-body {*/
+    /*display: inline;*/
+/*}*/
+.card-img-top {
+    width: 100%;
+    height: 31vw;
+    /*display: block;*/
+    object-fit: cover;
+}
+
+.fade-carousel {
+    position: relative;
+    height: 100vh;
+}
+.fade-carousel .carousel-inner .item {
+    height: 100vh;
+}
+.fade-carousel .carousel-indicators > li {
+    margin: 0 2px;
+    background-color: #f39c12;
+    border-color: #f39c12;
+    opacity: .7;
+}
+.fade-carousel .carousel-indicators > li.active {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+      -webkit-transform: translate3d(-50%,-50%,0);
+         -moz-transform: translate3d(-50%,-50%,0);
+          -ms-transform: translate3d(-50%,-50%,0);
+           -o-transform: translate3d(-50%,-50%,0);
+              transform: translate3d(-50%,-50%,0);
+}
+.hero h1 {
+    font-size: 6em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+
+.fade-carousel {
+    position: relative;
+    height: 100vh;
+}
+.fade-carousel .carousel-inner .item {
+    height: 100vh;
+}
+
+.hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+      -webkit-transform: translate3d(-50%,-50%,0);
+         -moz-transform: translate3d(-50%,-50%,0);
+          -ms-transform: translate3d(-50%,-50%,0);
+           -o-transform: translate3d(-50%,-50%,0);
+              transform: translate3d(-50%,-50%,0);
+}
+.hero h1 {
+    font-size: 6em;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+.hero h2{
+    font-size: 80px;
+    font-family: "배달의민족 한나는 열한살";
+}
+.fade-carousel {
+    opacity: 1;
+
+}
+
+/********************************/
+/*            Overlay           */
+/********************************/
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #080d15;
+    opacity: .4;
+}
+
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+.btn.btn-lg {
+    padding: 10px 100px;
+    font-size: 20px;
+}
+.quiz_emo {
+    margin-left: -60px;
+    width: 50px;
+    height: 50px;
+
+}
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+    color: #f5f5f5;
+    background-color: rgb(183, 202, 121);
+    border-color: rgb(183, 202, 121);
+    outline: none;
+    margin: 20px auto;
+}
+
+/********************************/
+/*       Slides backgrounds     */
+/********************************/
+.fade-carousel .slides .slide-1{
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.fade-carousel .slides .slide-1 {
+  background-image: url('../img/headerHome5.PNG'); /*headerHome3, 4, 5 중 이미지 3개 뽑아놓음 3개중에 택하기*/
+}
+
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px){
+    .hero { width: 980px; }
+}
+@media screen and (max-width: 640px){
+    .hero h1 { font-size: 4em; }
+}

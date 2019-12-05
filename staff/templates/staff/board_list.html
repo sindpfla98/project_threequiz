@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %}세바퀴{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/board_list.css" %}{% endblock %}
+{% block content %}
+<div class="content">
+<br/><br/><br/><br/><br /><br />
+    <h3><strong>공지사항</strong></h3>
+    <form method="post">
+    {#    6.2 소이 - 드롭다운 카테고리 #}
+    <ul class="category">
+        <li><a href="{% url 'staff:board_list' %}">전체</a><span><img src="{% static 'img/staff_bott.PNG' %}" class="list_top"/>&nbsp;</span>
+            <ul>
+                {% for category in categories %}
+                <li>
+                    <a href="{% url 'staff:board_filter' pk=category.pk %}">{{ category.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+    {#드롭다운 카테고리 끝#}
+    </form>
+    <hr class="list-hr" style="clear: right;">  {# 6.2소이 - 드롭다운 #}
+    <table class="table">
+        <thead>
+{#            <th>id</th>#}
+{#            <th class="d-lg-table-cell d-md-table-cell d-sm-none d-none">게시자</th>#}
+{#            <th>제목</th>#}
+{#    ======================================================= 간단내용 지움 조회수 추가 =======================================================      #}
+{#            <th class="d-lg-table-cell d-md-table-cell d-sm-none d-none">조회수</th>#}
+    {#             <th>작성 일시</th>#}
+   {#           <th class="d-lg-table-cell d-md-table-cell d-sm-none d-none">수정 일시</th>#}
+        </thead>
+        <tbody>
+        {% for post in posts %}
+        <tr style="background-color:
+                {% ifchanged post.id %}
+                    {% cycle 'white' 'white' %}
+                {% else %}
+                    'gray'
+                {% endifchanged %}">
+            {# 7.13 소이. 카테고리명 색상 변경 #6c6c6c -> #01A252, padding값 변경, width값 변경#}
+            <td style="color: #01A252; width: 12%; text-align: left; padding-left: 20px;">[{{ post.category }}]</td>
+            <td style="width: 55%; text-align: left;">
+{#                <a href="/blog/{{ post.pk }}">#}
+                <a href="{% url 'staff:board_detail' pk=post.pk %}" style="font-size:20px;">
+               {# <a href="{{ post.get_absolute_url }}">  redirect 모델 구현한 방법 #}
+                    {# href="blog/..."로 하면 오류!!! #}
+                    {{ post.title }}
+                </a>
+            </td>
+            {# 7.13 소이. 날짜, 조회수 색상 변경 #6c6c6c -> #909090 #}
+            <!--<td class="d-lg-table-cell d-md-table-cell d-sm-none d-none">{{ post.user }}</td>-->
+             <td class="d-lg-table-cell d-md-table-cell d-sm-none d-none" style="color:#909090; width: 20%;">{{ post.date|date:"Y년 M d일" }}</td>
+             <td class="d-lg-table-cell d-md-table-cell d-sm-none d-none" style="color:#909090; text-align: right"><img src="{% static 'img/eye.png' %}" class="list_eye_icon"/>{{ post.hits }}&nbsp</td>
+{#             <td class="d-lg-table-cell d-md-table-cell d-sm-none d-none">{{ post.updated }}</td>#}
+{#             <td class="d-lg-table-cell d-md-table-cell d-sm-none d-none">{{ post.tagged }}</td>#}
+        </tr>
+       {% endfor %}
+        </tbody>
+    </table>
+    <br/>
+
+{# 페이지 번호 #}
+    {% if is_paginated %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center pagination-sm">
+            {% if page_obj.has_previous %}
+              {% if not search %}
+              <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:board_list' %}?page={{ page_obj.previous_page_number }}" tabindex="-1">이전</a>
+              </li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:board_list' %}?{{search}}&page={{ page_obj.previous_page_number }}" tabindex="-1">이전</a></a>
+              </li>
+              {% endif %}
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">이전</a>
+            </li>
+            {% endif %}
+            {% for object in page_obj.paginator.page_range %}
+                <li class="page-item"><a class="page-link" href="{% url 'staff:board_list' %}?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+            {% endfor %}
+            {% if page_obj.has_next %}
+              {% if not search %}
+              <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:board_list' %}?page={{ page_obj.next_page_number }}">다음</a>
+              </li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:board_list' %}?{{search}}&page={{ page_obj.next_page_number }}">다음</a>
+              </li>
+              {% endif %}
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+    <br/>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{# 922 - 광고배너. 각 앱의 view에 작성한 곳만 나타남 #}
+
+<section id="footer" style="top: 750px;">
+    <div class="advertising">
+        <span><a href="{{ advertising1.url }}"><img src="{{ advertising1.photo.url }}" class="adv_img"/></a>
+        <a href="{{ advertising2.url }}"><img src="{{ advertising2.photo.url }}" class="adv_img"/></a></span>
+    </div>
+  <div class="container">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+        <a href="#"><h6 class="text-uppercase mb-4 font-weight-bold">SCROLL UP</h6></a>
+            <p>&nbsp;</p>
+        </div>
+     <div class="row text-center text-xs-center text-sm-left text-md-center">
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>Threewheel Company</h5>
+           <ul class="list-unstyled quick-links">
+                    <li><i class="fa fa-angle-double-right"></i>Home : threequiz.pythonanywhere</li>
+                    <li><i class="fa fa-angle-double-right"></i>Email : threewheel@naver.com</li>
+                    <li><i class="fa fa-angle-double-right"></i>Kakao : @세바퀴</li>
+           </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>CS CENTER</h5>
+           <ul class="list-unstyled quick-links">
+              <li><i class="fa fa-angle-double-right"></i>070-2290-2114</li>
+              <li><i class="fa fa-angle-double-right"></i>평일 : AM10:00-PM5:00</li>
+              <li><i class="fa fa-angle-double-right"></i>점심시간 : PM12:50-PM1:50</li>
+              <li><i class="fa fa-angle-double-right"></i>휴무 토 일 공휴일</li>
+           </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>BANK INFO</h5>
+           <ul class="list-unstyled quick-links">
+              <li><i class="fa fa-angle-double-right"></i>카카오 뱅크 : 3333-02-3015687</li>
+              <li><i class="fa fa-angle-double-right"></i>신한은행 : 110-385-174758</li>
+              <li><i class="fa fa-angle-double-right"></i>예금주 : 주식회사 세바퀴</li>
+           </ul>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                <p>&nbsp;</p>
+                <p><u><a href="http://www.hywoman.ac.kr/">Hywoman University SmartIT3</a></u> Graduation work</p>
+                <p class="h8">회사명: 주식회사 세바퀴 주소: 서울특별시 성동구 살곶이길 200
+                    <br/>대표자: 217230109 김소이 | 217230109 김시인 | 217230110 장소희 | 217230114 신예림</p>
+        </div>
+        </hr>
+     </div>
+  </div>
+</section>
+{% endblock %}

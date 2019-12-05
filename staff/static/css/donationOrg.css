@@ -1,0 +1,62 @@
+/* 7.18 소이 - 작성 시작 */
+
+.title_name{
+    margin-top: -200px;
+    color: #000000;
+    text-align: center;
+}
+h2{
+    margin-top: -200px;
+    color: #000000;
+}
+h2, p {
+    text-align: center;
+}
+
+#td_photo {
+        text-align: center;
+        width: 50%;
+        padding: 24px 12px 24px 12px;
+    }
+
+.donation_photo {
+    max-width: 200px;
+    text-align: center;
+}
+
+.arrow_photo {
+    width: 24px;
+    float: left;
+}
+img.donation_photo:hover {  /* 923 소이 */
+    cursor: pointer;
+}
+.bar_photo {
+    width: 24px;
+    float: right;
+}
+.change_width {
+    width: 150px;
+    text-align: center;
+}
+.change_url a:hover {
+    color: #01A252;
+}
+.table td, p {
+    vertical-align: middle;
+    /*border: none;*/
+}
+.table {
+    margin-bottom: 0;
+    width: 90%;
+}
+
+@media screen and (max-width: 500px){
+    .donation_photo {
+    width: 130px;
+    text-align: center;
+}
+    .table td {
+    width: 50px;
+}
+}

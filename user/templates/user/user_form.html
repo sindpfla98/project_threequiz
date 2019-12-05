@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block extrastyle %}{% static "css/login_forms.css" %}{% endblock %}
+{% block extra_body %}
+    {#    배송지 주소 #}
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="{% static 'js/user_form.js' %}">
+</script>
+<script src="{% static 'js/bootbox.min.js' %}"></script>
+{% endblock %}
+{% block title %}세바퀴{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+{% endblock css %}
+
+{% block content %}<br/><br/><br/><br/>
+<div class="panel panel-default registration">
+    <div class="panel-heading">
+        <h1 class="centered">회원가입</h1><br/>
+    </div>
+    <div class="panel-body">
+        <form action="." method="post">
+{#            보안을 위해 써주는 난수 발생기, 난수를 발생시켜 제대로 된 입력인지 확인합니다.#}
+{#            POST 와 붙어다녀  그 아래에 적어주면 보안 상의 문제를 해결할 수 있습니다.#}
+            {% csrf_token %}
+            <div class="form-group user_form">
+{#                8.19 예림 - 폼 수정 (배송주소 선택 디자인 변경예정)#}
+                <label id="id_{{ form.email.html_name }}">{{ form.email.label }}</label>
+                <input type="email" name="{{ form.email.html_name }}" required id="id_{{ form.email.html_name }}" placeholder="example@gmail.com"/>
+
+                <label id="id_{{ form.password1.html_name }}">{{ form.password1.label }}</label>
+                <input type="password" name="{{ form.password1.html_name }}" required id="id_{{ form.password1.html_name }}" placeholder="비밀번호를 입력해주세요"/>
+
+                <label id="id_{{ form.password2.html_name }}">{{ form.password2.label }}</label>
+                <input type="password" name="{{ form.password2.html_name }}" required id="id_{{ form.password2.html_name }}" placeholder="비밀번호를 다시 입력해주세요"/>
+
+                <label id="id_{{ form.name.html_name }}">{{ form.name.label }}</label>
+                <input type="text" name="{{ form.name.html_name }}" required id="id_{{ form.name.html_name }}" placeholder="닉네임을 입력해주세요"/>
+
+                <label id="id_{{ form.birth.html_name }}">{{ form.birth.label }}</label>
+                <input type="text" name="{{ form.birth.html_name }}" required id="id_{{ form.birth.html_name }}" placeholder="1990-01-01"/>
+
+                <label id="id_{{ form.phone.html_name }}">{{ form.phone.label }}</label>
+                <input type="text" name="{{ form.phone.html_name }}" required id="id_{{ form.phone.html_name }}" placeholder="010-1234-1234"/>
+
+                <label for="sample6_postcode" style="display:block;">주소</label>
+                <input type="text" name="postcode" required id="sample6_postcode" placeholder="우편번호" style="width: 58.5%; display: inline;"/>
+                <input type="button" class="btn btn-outline-success" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="margin-bottom: 9px; height: 34px;"/><br>
+                <input type="text" name="address" required id="sample6_address" placeholder="주소"/> <br/>
+                <input type="text" name="detail_address" required id="sample6_detailAddress" placeholder="상세주소"/> <br/>
+                <input type="text" name="ref_address" id="sample6_extraAddress" placeholder="참고항목"/>
+
+                <!-- 이 태그를 사용하여 에러 메시지를 디자인 하시오. (주관식 10점) -->
+                {% if form.errors %}
+                   <div id="errors">
+                      <div class="inner">
+                         <ul>
+                            {% for field in form %}
+                               {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                            {% endfor %}
+                         </ul>
+                      </div>
+                   </div>
+                {% endif %}
+            </div>
+            <div class="form-actions">
+{#                {% if user.profile == None %}#}
+{#                    <img src="../../../mysite/static/img/call.png" />#}
+{#                {% else %}#}
+{#                    <img src="user.profile"/>#}
+{#                {% endif %}#}
+                <button class="btn btn-primary btn-large" type="submit">가입하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+

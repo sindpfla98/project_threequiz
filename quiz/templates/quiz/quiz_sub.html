@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/quiz.css" %}{% endblock %}
+
+{% block content %}
+<div class="content" style="width: 70%;">  {#임시 화면비율 75%에 맞춤#}
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br> <br> <br> <br>
+    <h2 class="titlename"><b>퀴즈 주제 선택</b></h2>
+    <p>퀴즈를 맞추고 기부를 시작해보세요.</p>
+    <hr style="width: 300px;height: 4px; background-color: #99cc99;">
+    <br>
+    <div class="mulum_icon">
+        <a href="{% url 'quiz:quizinfo' %}"><img src="{% static 'img/mulum.png' %}" class="mulum"/></a>
+    </div>
+    <form method="POST" class="juje_img">{% csrf_token %}
+    {% for quizSub in quizSubs %}
+            <button type="submit" class="juje_but" name="q_sub{{ quizSub.id }}">{{ photo.id }}<img width="260px" src="{{ quizSub.photo.url }}"/> </button>
+    {% endfor %}
+    </form>
+</div>
+
+{% endblock %}

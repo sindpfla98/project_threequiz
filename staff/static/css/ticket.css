@@ -1,0 +1,126 @@
+
+h2{  /* 없는 게 맞는 지 확인 */
+    margin-top: -200px;
+    color: #000000;
+}
+h2, p {
+    text-align: center;
+}
+.left { /*<!--왼쪽 갈색 표식-->*/
+    width: 70px;
+    height: 90px;
+    position: absolute;
+    margin-top: 5px;
+}
+.mypage_back1 { /*<!--노락색 back->*/
+    bottom: 0;
+    height: 860px;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.p1{
+    margin-top: 30px;
+}
+.ticket_img{
+    margin: 100px auto 0;
+
+}
+.ticket_name {
+    text-align: center;
+
+
+}
+.img1 {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: -30px;
+}
+.btn2 {        /*<!--응모하기버튼-->*/
+    width: 220px;
+    height:60px;
+    font-size: 30px;
+    background-color: rgb(212, 233, 141);
+    border-radius: 30px;
+}
+.btn1{   /*<!--back/home-->*/
+    width: 200px;
+    height:50px;
+    font-size: 25px;
+}
+.bot1 {
+    text-align: center;
+}
+
+/* 8.30 alert창 디자인 */
+button.btn-primary.bootbox-accept {
+    padding: 5px;
+    font-weight: bold;
+    border: 0;
+    width: 30%;
+    background-color: #99cc99;
+    border-radius: 5px;
+    transition: all .3s;
+}
+button.btn-primary.bootbox-accept:hover {
+    transition: all .3s;
+    background-color: #01A252;
+}
+/* 알림창 뜨면 배경 어두워지는 거 삭제 dimmed*/
+.modal-backdrop.show {
+    opacity: 0;
+}
+
+
+ /* 응모하기 버튼 css 시작 */
+.mypage_btn2 {
+    /*margin-left: 30px;*/
+    /*text-align: center;*/
+    /*width: 110px;*/
+    /*height:35px;*/
+    /*font-size: 15px;*/
+  margin-left: 23px;
+  background:rgb(153, 204, 153);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:50px;
+  font-size:1.3em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.mypage_btn2:hover {
+    background: #f6e8b1;
+    color:rgb(153, 204, 153);
+}
+.mypage_btn2:hover:before,.mypage_btn2:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(153, 204, 153);
+  transition:400ms ease all;
+}
+.mypage_btn2:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.mypage_btn2:hover:before,.mypage_btn2:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+ /* 응모하기 버튼 css 끝 */
+
+.ticket_num {
+    text-align: left;
+    margin-left: 27px;
+    margin-top: 10px;
+
+}

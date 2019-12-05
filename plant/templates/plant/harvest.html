@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/harvest.css" %}{% endblock %}
+
+{% block content %}
+<div class="content">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br> <br> <br> <br>
+    <h2 class="titlename"><b>작물 게임</b></h2>
+    <hr style="width: 300px;height: 4px; background-color: #99cc99;">
+    <br /><br />
+    <div class="div_one">
+        <br /><br /><br /><br /><br />
+        <h3><b>수확에 성공하셨습니다!</b></h3>
+        <img src="{% static 'img/harvest.png' %}" class="suhack"/>
+
+        <div class="btn_hadan">
+            <button class="btn btn-outline-success" onclick="location.href='{% url 'staff:ticket' pk=pk %}'">경품 응모</button>
+            <button class="btn btn-outline-success" onclick="location.href='{% url 'plant:org_select' uk=user.pk %}'">기부 단체</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

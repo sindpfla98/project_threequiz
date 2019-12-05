@@ -1,0 +1,311 @@
+/* 홈의 div 넓이 */
+#content_home {
+    width:70%;
+}
+/* 카드형(기부단체) div 넓이 */
+#content_home2{
+    width:70%;
+}
+
+section{
+    padding: 150px 0;
+    overflow: hidden;
+}
+
+/* 홈화면에 있는 모든 버튼 */
+
+.btn {
+    width: 100%;
+    height: 56px;
+    background-color:#99cc99;
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    font-size: x-large;
+    margin: 10px;
+}
+
+
+/***************************************/
+/*   Overlay 히어로 배경 사진 어둡게   */
+/***************************************/
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #080d15;
+    opacity: .55;
+}
+/********************************/
+/*          Hero Headers        */
+/********************************/
+.hero {
+    position: absolute;
+    width: 200px;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+      -webkit-transform: translate3d(-50%,-50%,0);
+         -moz-transform: translate3d(-50%,-50%,0);
+          -ms-transform: translate3d(-50%,-50%,0);
+           -o-transform: translate3d(-50%,-50%,0);
+              transform: translate3d(-50%,-50%,0);
+}
+/* 히어로 문구 */
+.hero h3 {
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+}
+.hero h1 {
+    font-size: 70px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.fade-carousel {
+    position: relative;
+    height: 100vh;
+    opacity: 1;
+}
+.fade-carousel .carousel-inner .item {
+    height: 100vh;
+}
+
+/* 배경사진 - 5.26(소이) 뭐가 문젠지 모르겠는데 서버에 올리면 이미지가 안 나타남. 장고 url식으로 하려고 home.html의 해당 클래스에
+style로 하드 코딩함*/
+
+/*.fade-carousel .slides .slide-1{*/
+  /*height: 100vh;*/
+  /*background-size: cover;*/
+  /*background-position: center center;*/
+  /*background-repeat: no-repeat;*/
+  /*background-image: url('../img/headerHome5.PNG'); !*headerHome3, 4, 5 중 이미지 3개 뽑아놓음 3개중에 택하기*!*/
+/*}*/
+
+/********************************/
+/*          세바퀴 Story        */
+/********************************/
+
+/* 히어로 아래 세바퀴 Story */
+h2 {
+    /*margin-left: 150px;*/
+    text-align: center;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: bold;
+}
+/* 사진 */
+.main1 {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    width: 80%;
+}
+/* 전체 div */
+.main2 {
+    color: black;
+    margin: 0 auto;
+}
+/* 동그라미 아래 글귀 */
+.main2 p {
+    display: inline-block;
+    font-size: 20px;
+}
+
+/* main section_ 퀴즈,게임,기부 소개있는곳 start */
+.margin-ten-right {
+    margin-right: 10%;
+}
+
+.margin-two-top {
+    margin-top: 2%;
+}
+.vertical-align-top {
+    vertical-align: top;
+}
+.separator-line-verticle-large {
+    width: 1px;
+    height: 20px;
+}
+.bg-color {
+    background-color: #99cc99;
+}
+.pull-right {
+    float: right!important;
+}
+/* main section_ 퀴즈,게임,기부 소개있는곳 end */
+
+/********************************/
+/*             Card             */
+/********************************/
+/* 카드형 이미지부분 크기 */
+.card-img-top {
+    width: 100%;
+    height: 30vw;
+    /*display: block;*/
+    object-fit: cover;
+}
+/* 기부단체 설명 */
+.card-text{
+    font-size: 15px;
+}
+/* 자세히 보기 */
+.more{
+    font-size: 15px;
+}
+/********************************/
+/*          Custom Buttons      */
+/********************************/
+
+/* 히어로 버튼의 사진있을 때 현재 사진 지운 상태 */
+/*.btn.btn-lg{*/
+    /*padding: 10px 100px;*/
+    /*font-size: 20px;*/
+/*}*/
+/* 히어로 버튼의 사진 현재 사진없는 상태*/
+/*.quiz_emo {*/
+    /*margin-left: -60px;*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+/*}*/
+
+/* 버튼 부트스트랩으로 해서 필요없음 */
+/*.btn.btn-hero,*/
+/*.btn.btn-hero:hover,*/
+/*.btn.btn-hero:focus {*/
+    /*color: #ffffff;*/
+    /*background-color: rgb(183, 202, 121);*/
+    /*border-color: rgb(183, 202, 121);*/
+    /*outline: none;*/
+    /*!*margin: 100px auto;*!*/
+/*}*/
+
+
+/**************************************************/
+/* Media Queries ( 화면 사이즈별 세부 조절 )      */
+/**************************************************/
+/* 컴화면 */
+@media screen and (min-width: 700px){
+    .hero { width: 90%; }
+    .hero h3 { text-align: center;}
+    /* 스크롤하기 전*/
+    .scroll_bf{
+        /*background-color: rgba(255, 255, 255, 0.0);*/
+        -webkit-transition-duration:0.2s;
+    }
+    .scroll_bf li a{
+        margin-left: 20px;
+        font-size: 23px;
+        color: #fff !important;
+    }
+    .scroll_bf li a:hover{
+        margin-left: 20px;
+        color: #99cc99 !important;
+    }
+    .scroll_bf .welcome, .scroll_bf .welcome a:link, .scroll_bf .welcome a:visited {color: #fff;}
+}
+/* 폰화면 */
+@media screen and (max-width: 500px){
+    .hero{ margin-left: 10px; }
+    .hero h3 { font-size: 40px; text-align: center;}
+    .card-img-top { height: 70vw; }
+}
+
+section#footer {
+    padding-top: 0;
+}
+
+/* main 이미지 퀴즈풀기 버튼 */
+.mypage_btn2 {
+  margin-left: 1px;
+  background: #99cc99;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.3em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.mypage_btn2:hover {
+    background: rgba(255, 255, 255, 0);
+    color: #99cc99;
+}
+.mypage_btn2:hover:before,.mypage_btn2:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #99cc99;
+  transition:400ms ease all;
+}
+.mypage_btn2:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.mypage_btn2:hover:before,.mypage_btn2:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+ /* 변경사항 저장하기 버튼 css 끝 */
+
+.main_btn {
+    margin-top: 30px;
+    width: 300px;
+    font-size: 30px;
+    background-color: transparent !important;
+    border-bottom: 1px solid #ffffff;
+    /*border-top: 1px solid #ffffff;*/
+}
+.main_btn:hover {
+    background: rgba(255, 255, 255, 0);
+    color: #ffffff;
+}
+.main_btn:hover:before,.main_btn:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #ffffff;
+  transition:400ms ease all;
+}
+.main_btn:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.main_btn:hover:before,.main_btn:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+
+/* 11.12 소이 - 모바일 버전. 메인 문구 조절 */
+@media screen and (max-width: 500px){
+    .hero h1 {
+        font-size: 60px;
+    }
+    .hero h3 {
+        font-size: 22px;
+    }
+    .main_btn {
+        width: 250px;
+        text-align: center;
+        font-size: 20px;
+        margin-left: -40px;
+    }
+    div.col-offset-3.col-xs-6.col-sm-8.col-md-12 {
+        margin-right: 15px;
+    }
+}

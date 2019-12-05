@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% block title %}세바퀴{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/qna.css" %}{% endblock %}
+{% block extra_body %}
+<script src="{% static 'js/QnA.js' %}">
+</script>
+<script src="{% static 'js/bootbox.min.js' %}"></script>
+
+{% endblock %}
+{% block content %}
+<div class="content">
+<br/><br/><br/><br/><br /><br />
+    {# 7.13 소이. QnA를 질문사항으로 수정 #}
+    <h3 style="float: left;"><strong>질문사항</strong></h3>
+    {% if user.is_active %}
+        <a href="{% url 'staff:q_new' %}"><button type="button" class="btn btn-outline-success" style="float: right;">질문쓰기</button></a>
+    {% else %}
+        <a onclick="needLogin()"><button type="button" class="btn btn-outline-success" style="float: right;">질문쓰기</button></a>
+    {% endif %}
+    <br/><br/>
+    <hr class="list-hr">
+{# ----------------------------- 질문사항 리스트 및 디테일 ---------------------------#}
+    <table class="table">
+        {% for qna in qnas %}
+    {% if qna.lock == True %}
+        {% if qna.user == user %}  {# 7.13 소이. 이미지 아이콘 추가(staff_bott.PNG), 날짜 #909090으로 색상 변경, colspan 값 변경 #}
+        <tr id="flip_{{ qna.id }}" style="background-color: #ffffff">
+            <td class="qt" style="text-align: left">{{ qna.title }}</td><td style="color: #4c4c4c">{{ qna.user }}</td><td style="color: #909090;">{{ qna.date|date:"Y년 M d일" }}</td>
+            <td><img src="{% static 'img/staff_bott.PNG' %}" class="list_staff_bott"/></td>
+        </tr>
+        {% elif user.is_superuser %}
+        <tr id="flip_{{ qna.id }}" style="background-color: #ffffff">
+            <td class="qt" style="text-align: left">{{ qna.title }}</td><td style="color: #4c4c4c">{{ qna.user }}</td><td style="color: #909090;">{{ qna.date|date:"Y년 M d일" }}</td>
+            <td><img src="{% static 'img/staff_bott.PNG' %}" class="list_staff_bott"/></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4" class="qt" style="text-align: left"><img src="{% static 'img/lock.png' %}" class="list_lock_icon"/>비공개 질문입니다.</td></tr>
+        {% endif %}
+    {% elif qna.lock == False %}
+        <tr id="flip_{{ qna.id }}" style="background-color: #ffffff">
+            <td class="qt" style="text-align: left">{{ qna.title }}</td><td style="color: #4c4c4c">{{ qna.user }}</td><td style="color: #909090;">{{ qna.date|date:"Y년 M d일" }}</td>
+            <td><img src="{% static 'img/staff_bott.PNG' %}" class="list_staff_bott"/></td>
+
+        </tr>
+    {% endif %}
+        {#       질문 작성자한테 보임      #}
+            {# 7.13 소이. question_content 클래스 추가 - 글씨 두께 조정 #}
+        {% if qna.user == user %}
+        <tr class="panel" style="display: none; background-color: #fafafa">
+            <td colspan="3" class="question_content">{{ qna.question|safe }}</td>
+            <td style="vertical-align: middle; text-align: center;">
+                <a href="{% url 'staff:q_edit' pk=qna.pk %}"><button type="button" class="btn btn-outline-success">수정</button></a>
+                <a href="{% url 'staff:qna_remove' pk=qna.pk %}" onclick="return confirm('삭제하시겠습니까?');">
+                <button type="button" class="btn btn-outline-success">삭제</button></a>
+            </td>
+        </tr>
+        {% else %}
+            <tr class="panel question_content" style="display: none; background-color: #fafafa">
+            <td colspan="4">{{ qna.question|safe }}</td>
+        </tr>
+        {% endif %}
+{# ----------------------------- 답변이 없을 때 -------------------------------  #}
+        {% if qna.answer == None %}
+        <tr class="apanel" style="display: none; background-color: #e5e5e5">
+{#           관리자한테만 보임   #}
+            {% if user.is_superuser %}
+                <td colspan="4" class="none_a"><a href="{% url 'staff:a_edit' pk=qna.pk %}"><button type="button" class="btn btn-outline-success">답변달기</button></a></td>
+            {% else %}
+                <td colspan="4"><p>답변이 아직 없습니다.</p></td>
+            {% endif %}
+        </tr>
+{# ----------------------------- 답변이 있을 때 -------------------------------  #}
+        {% else %}
+        <tr class="apanel" style="display: none;">
+            {% if user.is_superuser %}  {# 7.13 소이 추가. 답변 옆에 화살표 이미지 #}
+            <td colspan="3" class="question_content"><img src="{% static 'img/answer_arrow.png' %}" class="answer_arrow"/>{{ qna.answer|safe }}</td>
+            <td style="vertical-align: middle; text-align: center;">
+                <a href="{% url 'staff:a_edit' pk=qna.pk %}"><button type="button" class="btn btn-outline-success">수정</button></a>
+            </td>
+            {% else %}
+            <td colspan="4" class="question_content"><img src="{% static 'img/answer_arrow.png' %}" class="answer_arrow"/>{{ qna.answer|safe }}</td>
+            {% endif %}
+        </tr>
+        {% endif %}
+    {% endfor %}
+
+    </table>
+    <br/>
+
+    {#6.2소이 - 페이지네이션 #}
+{% if qnas.has_other_pages %}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center pagination-sm">
+            {% if qnas.has_previous %}
+              {% if not search %}
+              <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:qna' %}?page={{ qnas.previous_page_number }}" tabindex="-1">이전</a>
+              </li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:qna' %}?{{search}}&page={{ qnas.previous_page_number }}" tabindex="-1">이전</a></a>
+              </li>
+              {% endif %}
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">이전</a>
+            </li>
+            {% endif %}
+            {% for object in qnas.paginator.page_range %}
+                <li class="page-item"><a class="page-link" href="{% url 'staff:qna' %}?page={{ forloop.counter }}">{{ forloop.counter }}</a></li>
+            {% endfor %}
+            {% if qnas.has_next %}
+              {% if not search %}
+              <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:qna' %}?page={{ qnas.next_page_number }}">다음</a>
+              </li>
+              {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="{% url 'staff:qna' %}?{{search}}&page={{ qnas.next_page_number }}">다음</a>
+              </li>
+              {% endif %}
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#">다음</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}
+{# --------------------------------- 질문 수정 --------------------------------------- #}
+{% if qform %}
+    <form style=" margin: 0 auto; width: 1000px; max-width: 1000px;" class="edit_form" method="POST">{% csrf_token %}
+{#        <table class="table qt_table">#}
+{#            <tbody>#}
+{#            <tr>#}
+{#                <td class="qform_title">제목 : {{ qform.title }}</td>#}
+{#                <td class="qform_lock">비공개 &nbsp{{ qform.lock }}</td>#}
+{#            </tr>#}
+{#            <tr>#}
+{#                <td colspan="3">{{ qform.question }}</td>#}
+{#            </tr>#}
+{#            </tbody>#}
+{#        </table><br/>#}
+        <div class="title_wrap">
+            {{ qform.title }}
+        </div>
+        <div class="lock_wrap">
+           <span style="font-size: 16px; color: #6c6c6c; padding-right: 10px;">비공개</span> {{ qform.lock }}
+        </div>
+        <div class="content_wrap" style="width: 100%;">
+            {{ qform.question }}
+        </div>
+
+{#        10.13 소이 - 버튼 위치 및 요소 변경#}
+        <div class="qform_btn">
+            <td><button class="btn btn-outline-success cancel" onclick="history.back(-1);">취소</button></td>
+            <td><button type="submit" class="btn btn-outline-success save">저장</button></td>
+        </div>
+
+    </form>
+{% endif %}
+{# ---------------------------------- 답변 수정 --------------------------------------- #}
+{% if aform %}
+    <form style=" margin: 0 auto; width: 85%;" class="edit_form" method="POST">{% csrf_token %}
+    <button type="submit" class="btn btn-outline-success save">저장</button>
+    <br/><br/>
+        <table class="table">
+            <tbody>
+            <tr>
+                <td>{{ aform.answer }}</td>
+            </tr>
+            </tbody>
+        </table><br/>
+    </form>
+{% endif %}
+</div>
+
+{% endblock %}
+
+{% block footer %}
+{# 922 - 광고배너. 각 앱의 view에 작성한 곳만 나타남 #}
+
+<section id="footer" style="top: 750px;">
+    <div class="advertising">
+        <span><a href="{{ advertising1.url }}"><img src="{{ advertising1.photo.url }}" class="adv_img"/></a>
+        <a href="{{ advertising2.url }}"><img src="{{ advertising2.photo.url }}" class="adv_img"/></a></span>
+    </div>
+  <div class="container">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+        <a href="#"><h6 class="text-uppercase mb-4 font-weight-bold">SCROLL UP</h6></a>
+            <p>&nbsp;</p>
+        </div>
+     <div class="row text-center text-xs-center text-sm-left text-md-center">
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>Threewheel Company</h5>
+           <ul class="list-unstyled quick-links">
+                    <li><i class="fa fa-angle-double-right"></i>Home : threequiz.pythonanywhere</li>
+                    <li><i class="fa fa-angle-double-right"></i>Email : threewheel@naver.com</li>
+                    <li><i class="fa fa-angle-double-right"></i>Kakao : @세바퀴</li>
+           </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>CS CENTER</h5>
+           <ul class="list-unstyled quick-links">
+              <li><i class="fa fa-angle-double-right"></i>070-2290-2114</li>
+              <li><i class="fa fa-angle-double-right"></i>평일 : AM10:00-PM5:00</li>
+              <li><i class="fa fa-angle-double-right"></i>점심시간 : PM12:50-PM1:50</li>
+              <li><i class="fa fa-angle-double-right"></i>휴무 토 일 공휴일</li>
+           </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>BANK INFO</h5>
+           <ul class="list-unstyled quick-links">
+              <li><i class="fa fa-angle-double-right"></i>카카오 뱅크 : 3333-02-3015687</li>
+              <li><i class="fa fa-angle-double-right"></i>신한은행 : 110-385-174758</li>
+              <li><i class="fa fa-angle-double-right"></i>예금주 : 주식회사 세바퀴</li>
+           </ul>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                <p>&nbsp;</p>
+                <p><u><a href="http://www.hywoman.ac.kr/">Hywoman University SmartIT3</a></u> Graduation work</p>
+                <p class="h8">회사명: 주식회사 세바퀴 주소: 서울특별시 성동구 살곶이길 200
+                    <br/>대표자: 217230109 김소이 | 217230109 김시인 | 217230110 장소희 | 217230114 신예림</p>
+        </div>
+        </hr>
+     </div>
+  </div>
+</section>
+{% endblock %}

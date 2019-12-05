@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/plant.css" %}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br/>
+    <h2 class="title_name"><b>작물 게임</b></h2>
+    <hr style="width: 300px; height: 4px; background-color: #99cc99;">
+    <br/><br/>
+    <div class="jackmul_back" style="background-color:#f6e8b1;">
+        <div class="jback1">
+            {% if user_diary.exp < 500 %}
+                <div style="width:100%; height:60px; background-color: #f6e8b1;"></div>
+                <div style="display:inline; min-width:100%;">
+                    <div style="width:10%; height:60px; background-color: #89725b; padding-top: 15px; display:inline;float:left;">
+                    <h3 style="color: #FFFFFF">Lv.{{ level }}</h3>
+{#                    잡초 주의 알림 190911 예림 작성 #}
+                        <div class="weed_alert">
+                            {% if weed_alert > 4 %}
+                                <img style="margin-top: 10px" src="{% static 'img/mulum_new2.png' %}" class="mulum"/>  {# 19/0914 시인추가 #}
+                                <p>잡초가 {{ weed_alert }}개입니다. 얼른 뽑지않으면 경험치가 줄어듭니다.</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {# 경험치 바 #}
+                    <div style="width:87%; height:60px; background-color: #89725b; padding-top: 15px; display:inline;float:right; position: relative; z-index: 30">
+                        <div style="width:{{ user_exp }}%; height: 30px; background-color: #99cc99; margin-left: 10px;"></div>
+                    </div>
+                </div>
+{#            다 자랐을 때 레벨과 경험치 바 #}
+            {% else %}
+                <div style="width:100%; height:60px; background-color: #f6e8b1;"></div>
+                <div style="display:inline; min-width:100%;">
+                    <div style="width:10%; height:60px; background-color: #89725b; padding-top: 15px; display:inline;float:left;">
+{#                  나중에 문구 바꿀 것 #}
+                    <h3 style="color: #FFFFFF">완성</h3>
+                    </div>
+                    {# 경험치 바 #}
+                    <div style="width:87%; height:60px; background-color: #89725b; padding-top: 15px; display:inline;float:right;">
+{#                        <div style="width:{{ user_exp }}%; height: 30px; background-color: #99cc99; margin-left: 10px;"></div>#}
+                    </div>
+                </div>
+            {% endif %}
+            <br>
+        <div style="position:relative; z-index: 50; margin-left: 500px; margin-bottom: -40px; margin-top: 120px"> {# 19/0906 시인추가 #}
+{#            말풍선 작물 상태 #}
+            <div><img src="{% static 'img/bubble01.png' %}" class="bubble"/></div>
+            <div>
+                <form class="bubble_comen" method="POST">{% csrf_token %}
+                {% if user_exp == 0 and level != 1 %}
+                    <div><button class="btn1" type="submit" name="growth_btn"><b>성장하기➥</b></button></div> {# 19/0906 시인추가 #}
+                {% elif user_diary.exp > 500 %}
+                    <div><button class="btn1" type="submit" name="harvest"><b>수확하기➥</b></button></div>{# 19/0906 시인추가 #}
+                {% else %}
+                    {{ plantState.state }}
+                {% endif %}
+{#                190910 예림 수정 및 추가 #}
+{#                작물 선택 틀렸을 때 #}
+                {% if wrong != None %}
+                    <p>{{ wrong }}</p>
+                {% endif %}
+{#                필요한 도구가 없을 때 #}
+                {% if need %}
+                    <p style="margin: 0px;">{{ need }}</p>   {# 190914 시인추가 #}
+                    <button type="button" style="margin-top: -100px"  class="btn1" onclick="location.href='{% url 'quiz:quizSubs' uk=user.pk %}'">퀴즈풀러가기</button>
+                {% endif %}
+                </form>
+            </div>
+        </div>
+            {# 잡초190910 시인추가 #}
+        <div style="position: relative;">
+            {% if weeds %}
+                <div style="margin-top: 350px;">
+                {% for weed in weeds %}
+                        <img class="weeds" style="position:absolute; z-index: {{ weed.id }};" src="{{ weed.photo.url }}" width="100%">  {# 1909012 시인추가 #}
+                {% endfor %}
+                </div>
+            {% else %}
+                <div style="margin-top: 350px;">
+                    <img style="position:absolute; z-index: 1; margin-left: -650px; margin-top: -245px;" src="{% static 'img/0_0.png' %}" width="100%">
+                </div>
+            {% endif %}
+            <img class="jackmul" src="{{ user_seedState.photo.url }}" width="300px"/> {# 작물 사진#} {# 1909012 시인추가 #}
+        </div>
+        <div style="position: relative">
+         <br> {# 19/0906 시인추가 br태그 하나 넣어줘야함! #}
+            <div class="ddang">
+                <img src="{% static 'img/ddang.png' %}" class="ddang"/>
+            </div>
+            <br />
+{#              {#도구 버튼과 도구 개수#}
+             <div class="item_back">
+                <form  method="POST">{% csrf_token %}
+                {% for item, user_items_count in items %}
+                    <button class="item_btn" type="submit" name="item{{ item.id }}"><img src="{{ item.photo.url }}" width="100px">
+                        <p style="color: #FFFFFF; font-size: 20px" >{{ user_items_count.item_count }}</p>
+                    </button>
+                {%endfor %}
+                </form>
+             </div>
+         </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

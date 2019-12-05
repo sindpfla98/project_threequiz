@@ -1,0 +1,56 @@
+{# 7.20 소이 - 작성 시작 #}
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/donation_select.css" %}{% endblock %}
+{% block extra_body %}
+<script src="{% static 'js/donation_select.js' %}">
+</script>
+{% endblock %}
+{% block content %}
+<div class="content">
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br> <br> <br> <br>
+    <h2 class="title_name"><b>기부 단체 선택</b></h2>
+    <p>이달의 기부 단체 중 기부에 참여하고 싶은 단체 하나를 선택하세요.</p>
+    <hr style="width: 300px; height: 4px; background-color: #99cc99;"> <br/>
+    <hr style="width: 80%; height: 2px; background-color: #b4ecbe;"/>
+    <div id="donation_org">
+    <form method="POST">{% csrf_token %}
+        {% for donationSelect in donationOrgs %}
+            <table class="table">
+                <tr>
+                    {# 8.20 소이- 버튼 효과 추가 #}
+                    <td style="border-top: none;" rowspan="5" id="td_photo">
+                        <button type="submit" name="donate{{ forloop.counter }}">
+                            <div class="hovereffect">
+                                <figure><img src="{{ donationSelect.photo.url }}" id="donation_photo"/></figure>
+                            </div>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-top: none;" class="change_width d-lg-table-cell d-md-table-cell d-sm-none d-none"> <img src="{% static 'img/donation_arrow.png' %}" class="arrow_photo"/> 단체명 <img src="{% static 'img/donation_bar.png' %}" class="bar_photo"/> </td>
+                    <td style="border-top: none;"><b>{{ donationSelect.name }}</b></td>
+                </tr>
+                <tr>
+                    <td class="change_width d-lg-table-cell d-md-table-cell d-sm-none d-none"> <img src="{% static 'img/donation_arrow.png' %}" class="arrow_photo"/> 전화번호 <img src="{% static 'img/donation_bar.png' %}" class="bar_photo"/> </td>
+                    <td>{{ donationSelect.phone }}</td>
+                </tr>
+                <tr>
+                    <td class="change_width d-lg-table-cell d-md-table-cell d-sm-none d-none"> <img src="{% static 'img/donation_arrow.png' %}" class="arrow_photo"/> 홈페이지 <img src="{% static 'img/donation_bar.png' %}" class="bar_photo"/> </td>
+                    <td class="change_url d-lg-table-cell d-md-table-cell d-sm-none d-none">{{ donationSelect.url|urlize }}</td>
+                </tr>
+                <tr>
+                    <td class="change_width d-lg-table-cell d-md-table-cell d-sm-none d-none"> <img src="{% static 'img/donation_arrow.png' %}" class="arrow_photo"/> 활동 <img src="{% static 'img/donation_bar.png' %}" class="bar_photo"/> </td>
+                    <td>{{ donationSelect.desc }}</td>
+                </tr>
+            </table>
+            <hr style="width: 80%; height: 2px; background-color: #b4ecbe;"/>
+        {% endfor %}
+    </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{# 8.12 소이 작성 #}
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/selectSeed.css" %}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br>
+    <h2 class="titlename"><b>작물 게임</b></h2>
+    <hr style="width: 300px;height: 4px; background-color: #99cc99;">
+    <br/><br/>
+    <div class="seeds">
+        <br>
+        <h3 class="jakuml_h3">키우고 싶은 작물을 선택해주세요.</h3>
+        <div class="mulum_icon">
+            <a href="{% url 'plant:seedinfo' %}"><img src="{% static 'img/mulum.png' %}" class="mulum"/></a>
+        </div>
+        <br><br>
+        <form method="post">{% csrf_token %}
+            <table class="table">
+            {% for selectSeed in selectSeeds %}
+                <button class="btn_color" type="submit" name="seed{{ selectSeed.id }}"><img class="jackmul_img" src="{{ selectSeed.photo.url }}"/>{{ selectSeed.name }}</button>
+            {% endfor %}
+{#                <a href="{% url 'plant:seedinfo' %}"><input type="button" class="btn_color2" value="씨앗정보 보러가기 ▷"></a>#}
+            </table>
+        </form>
+    </div>
+
+</div>
+{#    <div class="btn_hadan">#}
+{#        <button class="btn1 btn btn-outline-success" onclick="history.back(-1);">BACK</button>&nbsp;#}
+{#        <button class="btn1 btn btn-outline-success" onclick="location.href='{% url 'home' %}'">HOME</button>#}
+{#    </div>#}
+{% endblock %}

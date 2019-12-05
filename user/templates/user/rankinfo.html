@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/rankinfo.css" %}{% endblock %}
+{% block content %}
+<div class="content">
+<br/><br/><br/><br/>
+    <h2>&nbsp</h2>
+    <h3><strong>등급 안내</strong></h3>
+    <hr align="center" style="border: solid 2px #99cc99; width:100%;">
+    <br/>
+
+    <div class="mypage_back1" style="background-color:#f6e8b1;"><br/>
+        <br>
+        <div class="mypage_back2" style="background-color:#FFFFFF;"><br /><br />
+            <br><h4><b>등급 안내</b></h4><br>
+                <table style="margin:auto"><tr>
+                    {% for rankinto in ranklist %}
+                        <td><img src="{{ rankinto.photo.url }}">
+                        <p>{{ rankinto.rank }}</p>
+                        <p>수확 {{ rankinto.requirement }}회</p></td>
+                    {% endfor %}
+                    </tr>
+                </table>
+            `<hr><br /><br />
+             <br><h4><b>등급 혜택</b></h4><br>
+            <table style="margin:auto">
+                {% for rankinto in ranklist %}
+                <tr>
+                    <td>
+                        <img src="{{ rankinto.photo.url }}">
+                        <p>{{ rankinto.rank }}</p>
+                    </td>
+                    <td>응모에 참여할 수 있는 추첨권 <strong>{{ rankinto.ticket}}개</strong> 증정</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <br/>
+    <div style="text-align: center">
+        <hr align="center" style="border: solid 2px lightgrey; width:100%;">
+        <button class="btn1 btn btn-outline-success" onclick="history.back(-1);">BACK</button>
+        <a href="{% url 'home' %}"><button  type="button" class="btn1 btn btn-outline-success">Home</button></a>
+    </div>
+</div>
+{% endblock %}

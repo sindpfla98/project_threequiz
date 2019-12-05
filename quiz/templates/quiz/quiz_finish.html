@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/quiz.css" %}{% endblock %}
+
+{% block content %}
+<div style="width: 100%" class="content"> {# 190920 시인추가 #}
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <h2 class="titlename"><b style="color: white">{{ quizSubs.name }}</b></h2>
+    <hr style="width: 200px;height: 4px; background-color: rgba(255,255,255,0);border-color: white;">
+    <br/>
+    <div class="jackmul_back" style="background-color:#FFFFFF;"><br/> {# 190920 시인추가 #}
+        <img   src="{% static 'img/sketchbook.png' %}" class="sketchbook"/>
+            <div class="all_content">
+                <h1 class="all_content_h1"><strong style="font-family: Typo_CrayonM;">"{% firstof user %}"님 [ {{ date }} ] {{ count }}문제 맞추셨습니다.</strong></h1><br />
+                <div class="jackmul_back2" style="background-color:#edecd6;">
+                    <h3 class="all_content_h3"><strong style="font-family: Typo_CrayonM;"><img width="50px" src="{{ item.photo.url }}"> {{ item.name }} + {{ count }}개</strong></h3>
+                </div>
+                <br />
+                <div class="jackmul_back3">  {# 191115 시인변경 #}
+                    <form method="POST" style="padding-top: 17px;z-index: 101;">{% csrf_token %}
+                        <a href="{% url 'plant:userplant' pk=uk %}"><h3 class="gojack"><strong style="font-family: Typo_CrayonM;">작물키우기</strong></h3><img src="{% static 'img/next1.png' %}" class="quiz_real_rig_next2"/></a>
+                    </form>  {# 191115 시인변경 위에 25줄 #}
+                </div>
+            </div>
+        </div>
+    </div><br /><br />
+</div>
+{% endblock %}

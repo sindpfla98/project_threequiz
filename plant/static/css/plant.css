@@ -1,0 +1,142 @@
+.title_name{
+    margin-top: -200px;
+    color: #000000;
+    text-align: center;
+}
+
+h2, p {
+    text-align: center;
+}
+.weeds{
+     margin-left: -650px;
+     margin-top: -245px;
+}
+.jackmul_back {
+    top: -50px;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: -280px;
+    height: 800px;
+    width: 1350px;
+    /*width: 85%;*/
+    text-align: center;
+    zoom: 0.7;
+}
+.jackmul {    /*작물이미지*/
+    /*position: absolute;*/
+    /*top: 60%;*/
+    position: relative;
+    z-index: 1;
+    /*left: 90px;*/
+    margin-top: -640px;
+    /*margin-left:170px ;*/
+    /*z-index: 11;*/
+    /*text-align: center;*/
+}
+.ddang {                /*190912시인변경*/
+    position: absolute;
+    width: 1350px;
+    /*width: 100%;*/
+    margin-left: -371px;
+    margin-top: -60px;      /*190912시인변경*/
+    z-index: 20;   /*190912시인변경*/
+}
+.item_btn {         /*도구버튼*/   /*190912시인변경*/
+    position: relative;
+    /*position: absolute;*/
+    width: 190px;
+    height: 100px;
+    margin-top: -200px;
+    background-color: rgba( 255, 255, 255, 0 );
+    border: none;
+    z-index: 21;   /*190912시인변경*/
+}
+
+.item_back {
+    margin-top: -50px; /*item 위치변경*/
+}
+
+
+.btn1 {    /*수확버튼*/
+    border: 0px;
+    background-color: rgba( 255, 255, 255, 0 );
+    color: rgb(39, 174, 96);
+    padding: 5px;
+    margin-top: -130px;
+    font-size: 25px;
+    position: relative;
+    z-index: 100;    /*190914시인추가!!!!!!!-이거 안하면 버튼안눌림*/
+}
+
+.bubble{     /*말풍선*/     /*190912시인변경*/
+    position: relative;
+    z-index: 21;
+    margin-left: 130px;
+    margin-top: 55px;
+    height: 220px;  /*190914시인변경*/
+}
+.bubble_comen{              /*190912시인변경*/
+    position: relative;
+    height: 100px;
+    margin-top: -180px;   /*190914시인변경*/
+    margin-left: 140px;
+    font-size: 20px;
+    z-index: 40;
+}
+
+
+/* 잡초 알림 190911 예림 */
+.weed_alert p{
+    position:relative;
+    visibility: hidden;
+}
+.weed_alert:hover p{
+    visibility: visible;
+}
+.jback1{
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+@media screen and (max-width:500px) {
+    .jackmul_back{  /*191115 시인 추가*/
+        zoom: 0.3;
+        margin-left: -85px;
+        margin-bottom: -400px;
+
+    }
+    img.ddang {
+        height: 300px;
+    }
+    .jackmul {
+        margin-top: -670px;
+
+    }
+    .weeds {
+     margin-left: -650px;
+     margin-top: -205px;
+    }
+     /*  .jackmul_back{
+           margin-left: -35px;
+           width: 120%;
+           height: 300px;
+       }
+       .jback1{
+           width: 100%;
+           margin: 0 auto;
+           zoom: 33%;
+       }
+       .ddang{
+           margin-top: -75px;
+           height: 215px;
+       }
+       .bubble{
+           margin-top: 150px;
+       }
+       .jackmul{
+           margin-bottom: -30px;
+       }
+       */
+}

@@ -1,0 +1,103 @@
+span {
+    color: #6c6c6c;
+}
+ul.pagination {
+    text-align: center;
+}
+table {
+    table-layout: fixed;
+}
+table td{
+}
+td a:link,td a:visited{
+    color: #000000;
+}
+table tr:hover a {
+    color: #01A252;
+}
+
+/*페이지네이션 버튼*/
+a.page-link:hover {
+    color: #6c6c6c;
+}
+.list-hr{
+    background-color: #99cc99;
+    border: 0;
+    height: 6px;
+    margin-top: 25px;  /* 6.2 소이 추가 */
+    margin-bottom: 0;  /* 7.13 소이 추가 - 초록색 바랑 거의 겹치게 */
+}
+hr {  /* 7.13 소이 추가*/
+    margin-top: 0;
+}
+.table {  /* 7.13 소이 추가*/
+    margin-bottom: 0;
+}
+.table td {
+    text-align: center;
+    vertical-align: middle;  /* 6.2 소이 추가 */
+}
+/*.table tr:hover{*/
+/*    color: #99cc99;*/
+/*}*/
+.list_eye_icon{
+    width: 18px;
+    height:24px;
+    margin-top: -7px;
+}
+
+.qt:hover {
+    color: #01A252;
+}
+
+/*6.2 소이 - 드롭다운 카테고리 */
+h3 {
+    float: left;
+}
+ul.category {
+    list-style: none;
+    padding: 10px;
+    float: right;
+    white-space: nowrap;
+}
+ul.category li {
+    display: block;
+}
+ul.category a {
+    color: #6c6c6c;
+}
+ul.category li ul {
+    display:none;
+    position:absolute;
+    margin: 0;
+    padding:10px;
+    border: 0;
+    height: auto;
+    width: auto;
+    min-width: 80px;
+    z-index: 1;
+    list-style: none;
+    line-height: 30px;
+    background-color: #fff;
+    box-shadow: 0 0 16px 0 rgba(0,0,0,.1);
+    transition: all .2s linear;
+}
+ul.category li:hover ul {
+    cursor: pointer;
+    display:block;
+}
+ul.category li a:hover {
+    color: #01A252;
+}
+/*드롭다운 카테고리 끝*/
+img.list_top {
+    margin-left: 3px;
+    width: 20px;
+}
+
+/* 7.13 소이 추가. 맨 윗줄 삭제하고 아랫줄은 남김 */
+.table td {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+

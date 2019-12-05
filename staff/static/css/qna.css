@@ -1,0 +1,197 @@
+/* 8.20 confirm창 디자인 */
+.confirm_btn {
+    width: 60%;
+    background-color: #99cc99;
+}
+/* 알림창 뜨면 배경 어두워지는 거 삭제 dimmed*/
+.modal-backdrop.show {
+    opacity: 0;
+}
+button.confirm_btn.bootbox-cancel {
+    font-weight: bold;
+    padding: 5px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition: all .3s;
+}
+button.confirm_btn.bootbox-cancel:hover {
+    transition: all .3s;
+    background-color: #01A252;
+}
+
+button.confirm_btn.bootbox-accept {
+    font-weight: bold;
+    padding: 5px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+button.confirm_btn.bootbox-accept:hover {
+    transition: all .3s;
+    background-color: #01A252;
+}
+
+
+span {
+    color: #6c6c6c;
+}
+ul.pagination {
+    text-align: center;
+}
+table {
+    table-layout: fixed;
+}
+table td{
+}
+td a:link,td a:visited{
+    color: #000000;
+}
+td a:hover{
+    color: #01A252;
+}
+.list-hr{
+    background-color: #99cc99;
+    border: 0;
+    height: 6px;
+    margin-top: 25px;  /* 6.2 소이 추가 */
+    margin-bottom: 0;  /* 7.13 소이 추가 - 초록색 바랑 거의 겹치게 */
+}
+hr {  /* 7.13 소이 추가*/
+    margin-top: 0;
+}
+.table {  /* 7.13 소이 추가*/
+    margin-bottom: 0;
+}
+tr#flip_\{\{\ qna\.id\ \}\} {
+    background-color: #01A252;
+}
+td.qt{
+    width: 55%;
+}
+.table td {
+    text-align: center;
+    vertical-align: middle;  /* 6.2 소이 추가 */
+}
+.apanel {
+    background-color: #e5e5e5;  /* 7.13 소이. 색 변경 #99cc99 -> #e5e5e5 */
+}
+.apanel td{
+    text-align: left;
+}
+tr.panel td {
+    text-align: left;
+    vertical-align: middle;
+}
+.qt:hover {
+    color: #01A252;
+}
+a.page-link:hover {
+    color: #6c6c6c;
+}
+
+/* 6.2 소이 추가 */
+input#id_title {
+    width: 80%;
+}
+td.qt {
+    padding-left: 50px;
+    font-size: 20px;  /* 7.13 소이. 제목 글씨 크기 올림 */
+}
+td p, .none_a a {
+    margin-left: 38px;  /* 7.13 소이. 제목이랑 다시 맞추기, 글씨 크기 명시함 */
+    margin-bottom: 0;
+    font-size: 16px;
+}
+tr.apanel p {
+    margin-left: 60px;
+}
+.list_lock_icon{
+    height:20px;
+    margin-top: -7px;
+}
+
+/* 7.13 소이 추가. staff_bott 이미지 조정 */
+.list_staff_bott {
+    margin-left: 55%;
+    width: 20px;
+}
+
+
+/* 7.13 소이 추가. 내용이랑 답변 글씨 두께 조정 */
+.question_content p {
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+
+/* 7.13 소이 추가. 답변 화살표 이미지 */
+.answer_arrow {
+    margin-left: 34px;
+    width: 20px;
+    float: left;
+}
+/* 7.13 소이 추가. 맨 윗줄 삭제하고 아랫줄은 남김 */
+.table td {
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* 10.13 소이 - 질문쓰기, 질문수정 디자인 변경 */
+.edit_form {
+    text-align: center;
+}
+div.title_wrap {
+    width: 70%;
+    height: 60px;
+    float: left;
+    background-color: #f9f9f9;
+    border-top: 1px solid #7e7e7e;
+    margin-top: 10px;
+}
+.title_wrap input {
+    height: 32px;
+    border: 1px solid #e6e6e6;
+    line-height: 32px;
+    padding-left: 13px;
+    font-size: 16px;
+    color: #666666;
+    margin-top: 13px;
+    margin-left: 27px;
+}
+input#id_title {
+    width: 100%;
+
+}
+.lock_wrap {
+    display: inline-block;
+    background-color: #f9f9f9;
+    border-top: 1px solid #7e7e7e;
+    margin-top: 10px;
+    height: 60px;
+    width: 30%;
+    padding-left: 30px;
+    padding-top: 15px;
+}
+
+
+
+/* 10.13 소이 - 취소, 저장 버튼*/
+.qform_btn {
+    text-align: center;
+    padding-top: 15px;
+}
+button.cancel {
+    font-size: larger;
+    width: 80px;
+    height: 40px
+}
+button.cancel:hover {
+    border-color: #6c6c6c;
+    background-color: #6c6c6c;
+}
+button.save {
+    font-size: larger;
+    width: 80px;
+    height: 40px
+}

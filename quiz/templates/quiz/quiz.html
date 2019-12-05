@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/quiz.css" %}{% endblock %}
+
+{% block content %}
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <h2><b>퀴즈 주제 선택</b></h2>
+    <p>퀴즈를 맞추고 기부를 시작해보세요.</p>
+    <hr style="width: 300px;height: 4px; background-color: #01A252;">
+    <br><br>
+    <div class="mulum_icon">
+        <a href="#"><img src="{% static 'img/mulum.png' %}" class="mulum"/></a>
+    </div>
+    <div class="quiz_juje_top">
+        <img src="{% static 'img/yeuksa.png' %}" class="quiz_juje1"/>
+        <img src="{% static 'img/sudo.png' %}" class="quiz_juje2"/>
+        <img src="{% static 'img/nonsens.png' %}" class="quiz_juje3"/>
+    </div>
+    <div class="quiz_juje_bott">
+        <img src="{% static 'img/sangsic.png' %}" class="quiz_juje4"/>
+        <img src="{% static 'img/campaign.png' %}" class="quiz_juje5"/>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,187 @@
+<!DOCTYPE html>     <!--HTML5 규약을 준수하는 파일-->
+<html lang="ko">    <!--언어는 한국어로 지정--><!---->
+
+<head>              <!--페이지 타이틀과 css 파일 2개를 연결-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{% block title %}5조 과제{% endblock %}</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="robots" content="all,follow">
+{% load staticfiles %}  <!--정적 파일인 css 연결하기 위하여, staticfiles를 로드-->
+<!--스타일시트 css/base.css 작성이 필요함-->
+
+{#<link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR" rel="stylesheet">#}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://cdn.linearicons.com/free/1.0.0/svgembedder.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "css/base.css" %}{% endblock %}" />
+<link rel="stylesheet" type="text/css" href="{% block extrastyle %}{% endblock %}" />   <!--추가적인 css파일 불러오고 싶으면 사용. 현재는 비어있음-->
+<link rel="shortcut icon" href="{% static 'img/icon.png' %}">
+{#==========================================추가시작 - 윗줄에 숏컷은 필요없는거아닌가????=====================================================================#}
+
+<!-- font-awesome icon -->
+{#<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">#}
+<script defer src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" integrity="sha384-b3ua1l97aVGAPEIe48b4TC60WUQbQaGi2jqAWM90y0OZXZeyaTCWtBTKtjW2GXG1" crossorigin="anonymous"></script>
+
+    <!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+{#======================= base.js 수정 ============================================================================================================#}
+{% block extra_body %}
+<script src="{% static 'js/base.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/animate.css' %}">
+<script src="{% static 'js/wow.min.js' %}"></script>
+{# 8.20 소이 () #}
+<script src="{% static 'js/bootbox.min.js' %}"></script>
+{% endblock %}
+{#=====================================================================추가끝=====================================================================#}
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $(window).on("scroll", function () {
+        if($(window).scrollTop()>100){
+            $(".navbar").addClass("scroll_af");
+            $(".navbar").removeClass("scroll_bf");
+            $(".logo").addClass("logo_v4");
+            $(".logo").removeClass("logo_white");
+
+        }else{
+            $(".navbar").removeClass("scroll_af");
+            $(".navbar").addClass("scroll_bf");
+            $(".logo").removeClass("logo_v4");
+            $(".logo").addClass("logo_white");
+        }
+    });
+
+</script>
+<style>
+    div .logo_v4, div .logo_white{background-image: url('{% static 'img/logo_v4.png' %}'); }
+</style>
+</head>
+
+
+<body>              <!--바디 영역은 4 영역(헤더/메뉴/콘텐츠/풋터)으로 구성-->
+
+<!--Navbar -->
+<div class="container">
+    <header>
+        <nav class="navbar fixed-top navbar-expand-lg indigo navbar-dark scroll_bf">
+            <a class="navbar-brand" href="{% url 'home' %}"><div style="width: 80px; height: 55px; background-size: contain;" class="logo logo_white"></div></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                {% if user.is_active %}
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="{% url 'quiz:quizSubs' uk=user.pk %}">퀴즈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="{% url 'plant:userplant' pk=user.pk %}">작물</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" onclick="needLogin()">퀴즈</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" onclick="needLogin()">작물</a>
+                    </li>
+                {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="{% url 'staff:donation' %}">기부</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="{% url 'staff:board_list' %}">공지사항</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="{% url 'staff:qna' %}">질문사항</a>
+                    </li>
+                    {# 관리자만 관리자메뉴가 보임 #}
+                    {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a class="nav-link waves-effect waves-light" href="{% url 'admin:index' %}">관리자</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <span class="navbar-text">
+                 {#유저정보 부분#}
+                    {% if user.is_active %}
+                     <h4 class="welcome">
+                     <img style="margin-bottom: -30px; margin-top: -30px; margin-right: 10px; border-radius: 45%; border: 2px #6c6c6c solid;" src="{% firstof user.photo.url %}" width="40px" height="40px">
+                        <strong>{% firstof user %}</strong> 님 /
+{#                          <a href="{% url 'user:password_change' %}">비밀번호 변경</a> /#}
+                            <a href="{% url 'user:mypage' pk=user.pk %}">마이페이지</a> /
+                            <a href="{% url 'user:logout' %}">로그아웃</a>
+                    </h4>
+                    {% else %}
+                    <h4 class="welcome">
+                            <a href="{% url 'user:login' %}">로그인</a> /
+                            <a href="{% url 'user:register' %}">회원가입</a>
+                    </h4>
+                    {% endif %}
+                </span>
+            </div>
+        </nav>
+    </header>
+</div>
+    {% block content %}
+    {% endblock %}   <!--블록 태그로 콘텐츠 영역 정의 -->
+
+
+    {% block footer %}
+    {# 922 - 광고배너. 각 앱의 view에 작성한 곳만 나타남 #}
+
+   <section id="footer">
+        <div class="advertising">
+            <span><a href="{{ advertising1.url }}"><img src="{{ advertising1.photo.url }}" class="adv_img"/></a>
+            <a href="{{ advertising2.url }}"><img src="{{ advertising2.photo.url }}" class="adv_img"/></a></span>
+        </div>
+      <div class="container">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+            <a href="#"><h6 class="text-uppercase mb-4 font-weight-bold">SCROLL UP</h6></a>
+                <p>&nbsp;</p>
+            </div>
+         <div class="row text-center text-xs-center text-sm-left text-md-center">
+            <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+               <h5>Threewheel Company</h5>
+               <ul class="list-unstyled quick-links">
+                        <li><i class="fa fa-angle-double-right"></i>Home : threequiz.pythonanywhere</li>
+                        <li><i class="fa fa-angle-double-right"></i>Email : threewheel@naver.com</li>
+                        <li><i class="fa fa-angle-double-right"></i>Kakao : @세바퀴</li>
+               </ul>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+               <h5>CS CENTER</h5>
+               <ul class="list-unstyled quick-links">
+                  <li><i class="fa fa-angle-double-right"></i>070-2290-2114</li>
+                  <li><i class="fa fa-angle-double-right"></i>평일 : AM10:00-PM5:00</li>
+                  <li><i class="fa fa-angle-double-right"></i>점심시간 : PM12:50-PM1:50</li>
+                  <li><i class="fa fa-angle-double-right"></i>휴무 토 일 공휴일</li>
+               </ul>
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+               <h5>BANK INFO</h5>
+               <ul class="list-unstyled quick-links">
+                  <li><i class="fa fa-angle-double-right"></i>카카오 뱅크 : 3333-02-3015687</li>
+                  <li><i class="fa fa-angle-double-right"></i>신한은행 : 110-385-174758</li>
+                  <li><i class="fa fa-angle-double-right"></i>예금주 : 주식회사 세바퀴</li>
+               </ul>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                    <p>&nbsp;</p>
+                    <p><u><a href="http://www.hywoman.ac.kr/">Hywoman University SmartIT3</a></u> Graduation work</p>
+                    <p class="h8">회사명: 주식회사 세바퀴 주소: 서울특별시 성동구 살곶이길 200
+                        <br/>대표자: 217230109 김소이 | 217230109 김시인 | 217230110 장소희 | 217230114 신예림</p>
+            </div>
+            </hr>
+         </div>
+      </div>
+   </section>
+    {% endblock %}
+</body>
+</html>
+

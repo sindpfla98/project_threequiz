@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}세바퀴{% endblock %}
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/login_forms.css" %}{% endblock %}
+
+{% block content %}
+<div id="content" style="margin-top:100px">
+    <br/><br/><br/><br/><br/><br/>
+    <h1 class="centered">안녕히가세요!</h1>
+    <p class="centered">로그아웃되었습니다.</p>
+    <center>
+        <button class="btn-outline-success btn" onclick="location.href='{% url 'user:login' %}'" style="width: 10%;">로그인</button>
+    </center>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+{% endblock %}
+
+{% block footer %}
+{# 922 - 광고배너. 각 앱의 view에 작성한 곳만 나타남 #}
+
+<section id="footer" style="top: 350px;">
+    <div class="advertising">
+        <span><a href="{{ advertising1.url }}"><img src="{{ advertising1.photo.url }}" class="adv_img"/></a>
+        <a href="{{ advertising2.url }}"><img src="{{ advertising2.photo.url }}" class="adv_img"/></a></span>
+    </div>
+  <div class="container">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+        <a href="#"><h6 class="text-uppercase mb-4 font-weight-bold">SCROLL UP</h6></a>
+            <p>&nbsp;</p>
+        </div>
+     <div class="row text-center text-xs-center text-sm-left text-md-center">
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>Threewheel Company</h5>
+           <ul class="list-unstyled quick-links">
+                    <li><i class="fa fa-angle-double-right"></i>Home : threequiz.pythonanywhere</li>
+                    <li><i class="fa fa-angle-double-right"></i>Email : threewheel@naver.com</li>
+                    <li><i class="fa fa-angle-double-right"></i>Kakao : @세바퀴</li>
+           </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>CS CENTER</h5>
+           <ul class="list-unstyled quick-links">
+              <li><i class="fa fa-angle-double-right"></i>070-2290-2114</li>
+              <li><i class="fa fa-angle-double-right"></i>평일 : AM10:00-PM5:00</li>
+              <li><i class="fa fa-angle-double-right"></i>점심시간 : PM12:50-PM1:50</li>
+              <li><i class="fa fa-angle-double-right"></i>휴무 토 일 공휴일</li>
+           </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4 text-white">
+           <h5>BANK INFO</h5>
+           <ul class="list-unstyled quick-links">
+              <li><i class="fa fa-angle-double-right"></i>카카오 뱅크 : 3333-02-3015687</li>
+              <li><i class="fa fa-angle-double-right"></i>신한은행 : 110-385-174758</li>
+              <li><i class="fa fa-angle-double-right"></i>예금주 : 주식회사 세바퀴</li>
+           </ul>
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                <p>&nbsp;</p>
+                <p><u><a href="http://www.hywoman.ac.kr/">Hywoman University SmartIT3</a></u> Graduation work</p>
+                <p class="h8">회사명: 주식회사 세바퀴 주소: 서울특별시 성동구 살곶이길 200
+                    <br/>대표자: 217230109 김소이 | 217230109 김시인 | 217230110 장소희 | 217230114 신예림</p>
+        </div>
+        </hr>
+     </div>
+  </div>
+</section>
+{% endblock %}

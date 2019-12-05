@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/quiz.css" %}{% endblock %}
+
+{% block content %}
+<div style="width: 100%" class="content"> {# 190920 시인추가 #}
+    <br/><br/><br/><br/><br/><br/><br><br>
+    <br> <br> <br> <br>
+    <h2 class="titlename"><b>{{ quizSubs.name }}</b></h2>
+    <hr style="width: 200px;height: 4px; background-color: #99cc99;">
+    <br/>
+    <div class="jackmul_back" style="background-color:#ffffff;"><br/> {# 191103 시인 - 일단 스케치북만 남기고 노랑배경 없앰 #}
+        <img src="{% static 'img/sketchbook.png' %}" class="sketchbook"/> {# 190920 시인추가 #}
+        <div class="pnum">  {# 190920 시인추가 #}
+          {#<img src="{% static 'img/box_pen.png' %}" class="box_pen"style="position: relative; z-index: 11"/> #}
+            <div style="width:20%; height:60px; padding-top: 15px; display:inline;float:left;">
+                <h5 style="text-align: center"> {{ count }}/5</h5>  {# 190920추가 #}
+            </div>
+        </div>
+        <div class="quizq">
+            <p style="font-family: Typo_CrayonM;">{{ qnum }}번. {{ quizs.content }}</p>  {# 190921 퀴즈내용 #}
+        </div>
+        <br><br><br>
+        <form method="POST">{% csrf_token %}   {# yes or no 고르는 손 #}
+            <div class="quiz_select_box" style="display: inline-block"> {# 190920 시인추가 밑에 다 #}
+                <div class="yes">
+                    <button class="qu_li_di_bt1" type="submit" name="O"><img src="{% static 'img/quiz_yes_nohand.png' %}" class="quiz_real_li_bt1"/>
+                                                                         <img src="{% static 'img/quiz_yes_hand.png' %}" class="quiz_real_li_bt1"/>
+                    </button>
+                </div>
+                <div class="no">
+                    <button class="qu_li_di_bt1" type="submit" name="X"><img src="{% static 'img/quiz_no_nohand.png' %}" class="quiz_real_li_bt2"/>
+                                                                        <img src="{% static 'img/quiz_no_hand.png' %}" class="quiz_real_li_bt2"/>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

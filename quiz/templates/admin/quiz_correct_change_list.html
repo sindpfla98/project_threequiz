@@ -1,0 +1,48 @@
+{% extends "admin/change_list.html" %}
+{% block content_title %}
+    <h1> 문제 정답률 </h1>
+{% endblock %}
+{% block result_list %}
+<div class="results">
+    <table style="width:60%;">
+    <thead>
+      <tr>
+        <th>
+          <div class="text">
+            <a href="#">번호</a>
+          </div>
+        </th>
+        <th>
+          <div class="text">
+            <a href="#">문제</a>
+          </div>
+        </th>
+        <th>
+          <div class="text">
+            <a href="#">주제 번호</a>
+          </div>
+        </th>
+        <th>
+          <div class="text">
+            <a href="#">
+              <strong>문제 정답률</strong>
+            </a>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for qs, rate in qs_lst %}
+      <tr class="{% cycle "row1" "row2" %}">
+        <td> {{ qs.id }} </td>
+        <td> {{ qs.content }} </td>
+        <td> {{ qs.quizSub_id }} </td>
+        <td> {{ rate | default:0}}% </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+{% endblock %}
+{% block pagination %}{% endblock %}

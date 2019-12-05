@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/jackmulDiary.css" %}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br> <br> <br> <br>
+    <h2 class="titlename"><b>작물 일지</b></h2>
+    <hr style="width: 180px;height: 4px; background-color: #99cc99;">
+    <br><br>
+ {% for diary in diarys %}
+     <div class="diaryAll">
+             <div class="column">
+                 <div class="columnIn1">
+                      <img src="{{ diary.seedState.seed.photo.url }}">
+                 </div>
+                 <div class="columnIn2">
+                    {{ diary.seedState.seed.name}} <br>
+                    {{ diary.seedState }}  <br>
+                    {{ diary.date|date:"Y-m-d-D" }}  <br>
+                     {{ diary.donation.name}} <br>
+                     <div class="green">{{ diary.delivery|default_if_none:"" }}</div> {# 이상있으면 이 div빼기 #}
+                 </div>
+                 <br><br><br>
+            </div>
+     </div>
+ {% endfor %}
+</div>
+    <div class="btnall">
+        <button class="btn1 btn btn-outline-success" onclick="history.back(-1);">BACK</button>&nbsp;
+        <button class="btn1 btn btn-outline-success" onclick="location.href='{% url 'home' %}'">HOME</button>
+    </div>
+{% endblock %}

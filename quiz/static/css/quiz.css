@@ -1,0 +1,278 @@
+.titlename{  /* 7.16 소희시인*/
+    margin-top: -200px;
+    color: #000000;
+    text-align: center;
+
+}
+
+h2, p {
+    text-align: center;
+}
+.quiz_juje_top, .quiz_juje_bott {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+
+}
+.mulum_icon{
+    text-align: center;
+    margin-right: -1000px;
+    top: 10px;
+}
+.juje_img{
+    text-align: center;
+}
+.juje_but{
+    text-align: center;
+    background-color: #FFFFFF;
+    border: #FFFFFF;
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 10px;
+    /*width: 30%;*/
+    /*padding: 60px;*/
+}
+.jackmul_back { /*190920추가*/
+    position: center;
+    top: -50px;
+    bottom: 0;
+    height: 700px;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+.sketchbook {      /*191103 시인*/
+    position: relative;
+    z-index: 10;
+    width: 93%;
+    height: 700px;
+}
+
+.jackmul_back1{
+    position: center;
+    top: -50px;
+    bottom: 0;
+    height: 600px;
+    width: 1300px;
+    margin: auto;
+    /*text-align: center;*/
+}
+.jackmul_back2{     /* 190221 - quiz_finish.html 에서 [ 영양보충 +7개] 배경 박스*/
+    top: -30px;
+    bottom: 0;
+    height: 78px;
+    width: 400px;
+    margin: auto;
+    line-height: 80px;
+    display: table;
+    position: center;
+}
+
+.jackmul_back3{       /* 190221 - quiz_finish.html 에서 [ 작물키우기] 배경 박스*/
+    position: center;
+    top: -50px;
+    bottom: 0;
+    height: 40px;
+    width: 210px;
+    margin: auto;
+    display: table;
+}
+@font-face {
+    font-family: "Typo_CrayonM";
+    src: url("font/Typo_CrayonL.ttf")format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+.pnum {
+    position: relative;  /*1901103 시인 추가*/
+    margin-top: -590px;
+    z-index: 11;
+    text-align: left;
+    margin-left: 150px;
+    color: blue;  /*190920 시인 추가*/
+}
+.pnum div h5{
+    font-family: Typo_CrayonM;
+    font-size: 40px;
+}
+
+.quizq {   /*퀴즈내용*/
+    /*margin-top: 200px;*/
+    /*font-weight: bold;*/
+    /*font-size: 30px;*/
+    /*width: 50%;*/
+    /*height: 100px;*/
+    /*text-align: center;*/
+    /*margin-left: 170px;*/
+    margin-top: 100px;
+    margin-left: -260px;
+    width: 60%;
+    text-align: center;
+    display: inline-block;
+    font-size: 30px;
+    font-weight: bold;
+    z-index: 13;  /*1901103 시인 추가*/
+    position: relative;   /*1901103 시인 추가*/
+}
+.quiz_select_box { /*1901103 시인 추가*/        /*yes no 묶은 div*/
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    z-index: 13;
+}
+.quiz_real_li_bt1, .quiz_real_li_bt2 { /*190920 시인 추가*/    /*yes no  각 이미지 크기 조정*/
+    width: 130px;
+    margin-top: 30px;
+}
+.qu_li_di_bt1{   /*190920 시인 추가*/  /*버튼을 선,색 투명하게 줌*/
+    background-color: #ffffff;
+    background-color: rgba( 255, 255, 255,0);
+    border: 0px;
+}
+.yes {
+    margin-left: -240px;
+}
+.no {
+    margin-top: -290px;
+   margin-left: 200px;
+}
+/*yes 손 + hover*/
+.yes img:last-child{display:none}
+.yes:hover img:first-child{display:none}
+.yes:hover img:last-child{display:inline-block}
+/*no 손 + hover*/
+.no img:last-child{display:none}
+.no:hover img:first-child{display:none}
+.no:hover img:last-child{display:inline-block}
+.quiz_real_next{
+    width: 60px;
+    height: 50px;
+    text-align: center;
+    margin-right: -1000px;
+    margin-top: -90px;
+}
+.quiz_real_rig_next1{    /*quiz_finish.html 에서 next */
+    width: 100px;
+    height: 70px;
+    text-align: center;
+    margin-right: -500px;
+    margin-top: -50px;
+}
+.quiz_real_rig_next2{     /*quiz_finish.html 에서 next */
+    width: 35px;
+    height: 35px;
+    margin-top: -40px;
+    margin-left: 130px;
+}
+.next {
+    position: relative;
+    z-index: 16;
+    width: 100%;
+}
+/*191103 추가*/
+/*right.html 추가 css*/
+/* right, wrong */
+.yes_1 {/*yes,no 선택 시 넘어가서 팻말 들고 있음*/
+    width: 30%;
+    margin-top: -70px;
+    position: relative;
+    z-index: 15;
+}
+/*quiz_finish,html*/
+.all_content{  /*퀴즈 다 풀었을 때 스케치북 속 내용들*/
+    position: relative;
+    z-index: 17;
+    margin-top: -450px;
+}
+.all_content_h1{   /*몇 문제 맞추셨습니다.*/
+    font-size: 30px;
+}
+.all_content_h3{   /*[관심주기] + 5개*/
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 25px;
+}
+.gojack {    /*[작물키우기]*/
+    font-size: 25px;
+    text-align: left;
+    margin-left: 22px;
+    vertical-align: middle;
+    margin-bottom: -9px;
+}
+/* 1901103 */
+/* 폰화면- quiz 풀 때 */
+@media screen and (max-width:500px){
+    .sketchbook{
+        margin-left: -100px;
+        width: 200%;
+        height: 500px;
+    }
+    .pnum {  /*퀴즈번호_갈색박스*/
+        margin-top: -430px;
+        width: 150%;
+        margin-left: -50px;
+    }
+    .pnum h5 {font-size: 13px}
+    /*.jackmul_back h3{font-size: 17px}*/
+    /*.jackmul_back{ text-align: center; }*/
+    /*.jackmul_back { height: 100vw; }*/
+    .quizq p {    /*퀴즈내용*/
+        margin-top: -10px;
+        margin-left: 105px;
+        width: 140%;
+        font-size: 20px;
+        margin-bottom: 30px
+    }
+    .quiz_select_box{  /*yes, no 두개 묶인 div*/
+        margin-top: -60px;
+        margin-left: 30px;
+    }
+    .quiz_real_li_bt1{  /*yes 버튼 이미지 크기*/
+        width: 53%;
+    }
+    .quiz_real_li_bt2{  /*no 버튼 이미지 크기*/
+        width: 100%;
+    }
+    .yes {  /*yes 버튼  div*/
+        margin-left: -200px;
+    }
+    .no {    /*no 버튼  div*/
+        margin-top: -220px;
+        margin-left: 100px;
+    }
+    /* 폰화면- yes, no 팻말 크기 모바일 조정 */
+    .yes_1{
+        margin-top: -100px;
+        width: 75%;
+    }
+    /* 폰화면- next 전체 위치 모바일 조정 */
+    .next {
+        margin-left: -230px;
+    }
+    /* 폰화면- next 각 크기 모바일 조정 */
+    .quiz_real_rig_next1{
+        width: 60px;
+        height: 40px;
+    }
+    /* quiz_finish.html 모바일 조정 */
+    .all_content{
+        width: 130%;
+        margin-top: -330px;
+        margin-left: -30px;
+    }
+    .all_content h1{ /*"ooo"님이 3문제 맞추셨습니다*/
+        font-size: 18px;
+    }
+    .jackmul_back2{  /*"광합성" + 3개 획득*/
+        width: 200px;
+        height: 60px;
+    }
+    .all_content_h3{  /*"광합성" + 3개 획득 - 글씨*/
+        font-size: 17px;
+    }
+    .jackmul_back3 {  /*작물키우기*/
+        width: 230px;
+        height: 70px;
+    }
+}

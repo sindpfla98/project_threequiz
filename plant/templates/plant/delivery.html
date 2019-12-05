@@ -1,0 +1,69 @@
+{# 7.21 소이 - 작성 시작 #}
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/delivery.css" %}{% endblock %}
+{% block extra_body %}
+    {#    배송지 주소 #}
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="{% static 'js/delivery.js' %}">
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="content">
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br> <br> <br> <br>
+    <h2 class="title_name"><b>배송 확인</b></h2>
+    <p>씨앗이 배송될 주소지와 기부단체를 확인하세요.</p>
+    <hr style="width: 350px; height: 4px; background-color: #99cc99;"> <br/>
+
+{#    <hr/>#}
+{#    <img class="seed_photo" src="{% static 'img/answer_arrow.png' %}"/>#}
+{#    <p>[선택]씨앗 1종</p>#}
+{##}
+{#    <img class="plus_photo" src="{% static 'img/plus.png' %}"/>#}
+{##}
+{#    <img class="org_photo" src="{% static 'img/answer_arrow.png' %}"/>#}
+{#    <p>[선택]기부단체</p>#}
+    <hr style="margin: 0; height: 1px; background-color: lightgrey;"/>
+    <br/><br />
+    <div class="seed_org row"> {# 190907 시인추가!!! #}
+        <span class="seed_org row seed_photo"> {# 190907 시인추가!!! #}
+            <img src="{{ user_seed.photo.url }}" width="110px"/>
+        <p>[선택]씨앗1종 <b>{{ user_seed.name }}</b></p><br/>
+        </span>
+        <span class="seed_org row plus_photo"> {# 190907 시인추가!!! #}
+            <img src="{% static 'img/plus.png' %}"/>
+        </span>
+        <span class="seed_org row org_photo"> {# 190907 시인추가!!! #}
+            <img src="{{ user_donation.photo.url }}" width="110px"/>
+        <p>[선택]기부단체 <b>{{ user_donation.name }}</b></p><br/>
+        </span>
+    </div>
+
+    <hr style="margin: 0; height: 1px ;background-color: lightgrey;"/>
+    <br />
+    <div class="panel-body">
+        <h3 style="text-align: center; padding-top: 20px;">배송지 정보</h3>
+        <br/>
+        <form action="." method="post">{% csrf_token %}
+            <p>이 &nbsp;&nbsp;&nbsp;&nbsp; 름  &nbsp;{{ form.name }}</p>
+            <p>주 &nbsp;&nbsp;&nbsp;&nbsp; 소 &nbsp;
+            <input type="text" name="postcode" value="{{ form.postcode.value }}" required id="sample6_postcode" placeholder="우편번호"/>
+            <input type="button" class="adsearch btn btn-outline-success" onclick="sample6_execDaumPostcode()" value="검색하기"/>
+            <input class="address2" type="text" name="address" value="{{ form.address.value }}" required id="sample6_address" placeholder="주소"/>
+            <input class="address2" type="text" name="detail_address" value="{{ form.detail_address.value }}" required id="sample6_detailAddress" placeholder="상세주소"/>
+            <input class="address2" type="text" name="ref_address" value="{{ form.ref_address.value }}" required id="sample6_extraAddress" placeholder="참고항목"/>
+            <p>전화번호 &nbsp;{{ form.phone }}</p>
+            <div class="delivery_btn">
+                <button class="bimil_btn" onclick="history.back(-1);">BACK</button>
+                <button class="bimil_btn" type="submit" name="update">변경사항 저장</button> <br><br>
+                <a><button class="delivery_btn2" type="submit" name="delivery_start">배 송</button></a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

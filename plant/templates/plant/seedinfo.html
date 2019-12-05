@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/seedinfo.css" %}{% endblock %}
+
+{% block content %}
+<div class="content">
+    <br> <br> <br> <br>
+    <h2>&nbsp</h2>
+    <h3><strong>씨앗정보 안내</strong></h3>
+    <hr align="center" style="border: solid 2px #99cc99; width:100%;">
+    <br><br><br>
+    <table class="table">
+             <thead class="th">
+                <th>씨앗</th>
+                <th>특징 / 유의사항</th>
+            </thead>
+              {% for seed in seeds %}
+            <tbody class="tb">
+                <tr>
+                    <td><img width="210px" src="{{ seed.photo.url}}"></td>
+                    <td class="sddesc">{{ seed.desc }}</td>
+                </tr>
+            </tbody>
+              {% endfor %}
+    </table>
+    <div style="text-align: center">
+        <hr align="center" style="border: solid 2px lightgrey; width:100%;"><br />
+        <button class="btn1 btn btn-outline-success" onclick="history.back(-1);">BACK</button>
+        <button type="button" class="btn1 btn btn-outline-success" onclick="location.href='{% url 'home' %}'">Home</button>
+    </div>
+</div>
+{% endblock %}

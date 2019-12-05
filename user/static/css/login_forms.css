@@ -1,0 +1,167 @@
+/* 8.30 소이 - 알림창 버튼 디자인 */
+.confirm_btn {
+    width: 60%;
+    background-color: #99cc99;
+}
+/* 알림창 뜨면 배경 어두워지는 거 삭제 dimmed*/
+.modal-backdrop.show {
+    opacity: 0;
+}
+button.confirm_btn.bootbox-cancel {
+    font-weight: bold;
+    padding: 5px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    transition: all .3s;
+}
+button.confirm_btn.bootbox-cancel:hover {
+    transition: all .3s;
+    background-color: #01A252;
+}
+
+button.confirm_btn.bootbox-accept {
+    font-weight: bold;
+    padding: 5px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+}
+button.confirm_btn.bootbox-accept:hover {
+    transition: all .3s;
+    background-color: #01A252;
+}
+
+/*Form Error*/
+.error-note {
+    display: block;
+    margin: 5px 0;
+    border: 1px solid #01a252;
+    background: #a7dd95;
+    padding: 5px 25px;
+    color: #000000;
+    font-size: 13px;
+    /*font-weight: bold;*/
+    border-top-left-radius: 10px;
+    border-top-right-radius:10px;
+}
+
+/*Authentication Forms*/
+
+fieldset {
+    border: 1px solid #ccc;
+}
+
+.aligned label {
+    width: 100px;
+    display: block;
+    padding: 3px 10px 0 0;
+    float: left;
+}
+
+.form-group {
+    /*padding: 20px;*/
+    margin-top: 10px;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 11px;
+    /*border-bottom: 1px solid #eee;*/
+}
+
+.submit-row {
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    text-align: right;
+}
+
+.submit-row input {
+    margin: 10px;
+    background: #99cc99;
+}
+
+div.panel-default, div.panel, div.registration{
+    border-color: white;
+    border: none;
+}
+
+.panel-body {
+    width: 340px;
+    margin: 0 auto;
+    margin-bottom: 250px; /* 싱-중간 회색줄 없앰 추가한것*/
+    border-radius: 10px;
+    box-shadow: 0 0 0 1px #666;  /*박스 틀 */
+}
+
+.btn {
+    width: 40%;
+    height: 40px;
+    background-color: #99cc99;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-weight: 200;
+    font-size: 15px;
+    margin-bottom:15px;
+    margin-top: 5px;
+
+}
+.btn:hover {
+     background-color: #01a252;
+     color: white;
+}
+
+.form-actions {
+    margin: 0 auto;
+    text-align: center;
+
+}
+.link-below-button {
+    margin: 0 auto;
+    padding-bottom: 13px;
+    text-align: center;
+    color: #01a252;
+ }
+
+.centered { text-align: center; }
+
+#footer {   /*회색줄 없애는데 동참한 애*/
+    position: relative;
+    top: -20px;
+    /*background-color: #555;*/
+    bottom: 0;
+    /*height: 30px;*/
+    /*padding: 20px 20px 100px 20px;*/
+    text-align: left;
+}
+
+input{
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+ul.errorlist li, p.errorlist{
+    color: red;
+    list-style: none;
+}
+
+/* 8.19 소이 추가 */
+.user_form label {  /*회원가입 라벨*/
+    margin: 8px 0 0 0;
+}
+
+

@@ -1,0 +1,144 @@
+{% extends "base.html" %}                   <!--base.html을 상속받는다고 선언-->
+
+{% block title %}세바퀴{% endblock %}    <!--title 블록 재정의-->
+
+<!--정적 파일인 css 연결하기 위하여, staticfiles를 로드-->
+{% load staticfiles %}
+<!--extrastyle 블록을 재정의하여 추가적으로 home.css 연결-->
+{% block extrastyle %}{% static "css/home.css" %}
+{% endblock %}
+
+
+{% block content %}
+    <script>
+      new WOW().init();
+    </script>
+    <style>
+        @media screen and (min-width: 700px){
+            div .logo_white{background-image: url('{% static 'img/logo_white.png' %}');}
+        }
+    </style>
+    <!--header부분-->
+<header>
+    <div class="carousel fade-carousel slide" style="background-image: url('{% static 'img/headerHome5.png' %}'); background-repeat: no-repeat; background-position: center center; height: 100vh;
+  background-size: cover;">
+    <!-- Overlay -->
+        <div class="overlay"></div>
+    <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+        <div class="item slides active">
+        <div class="slide-1"></div>
+        <div class="hero row justify-content-center">
+            <div class="col-offset-3 col-xs-6 col-sm-8 col-md-12">
+            <div style="text-align: center"><br /><br /><br />
+                <h1 style="margin-top:100px; color: #FFFFFF">세바퀴</h1>
+                <h3 style="color: #FFFFFF">세상을 바꾸는 퀴즈</h3>
+
+           {% if user.is_active %}
+                      <button type="submit" class="mypage_btn2 btn main_btn" onclick="location.href='{% url 'plant:userplant' pk=user.pk %}'">작물 키우러가기</button>
+            {% else %}
+                      <button type="submit" class="mypage_btn2 btn main_btn" onclick="needLogin()">작물 키우러가기</button>
+            {% endif %}
+                        <br /><br /><br /><br /><br /><br /><br />
+            </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+</header>
+<!--content 블록 재정의-->
+<div id="content_home" class="mx-auto">     <!--content_home 영역 정의-->
+    <div class="text-center">
+        <br/><br/>
+<!-- start feature box section -->
+        <section id="services" >
+            <div class="container" style="text-align: center">
+                    <b style="font-size:20px">세바퀴 이야기</b>
+                    <hr align="center" style="border: solid 2px #99cc99; width:16%;"><br/><br/><br/><br/>
+                <div class="row">
+                    <!-- start feature box item -->
+                    <div class="col-md-4 col-sm-4 col-xs-12 xs-margin-30px-bottom xs-text-center wow fadeInUp last-paragraph-no-margin">
+                        <div class="sec_div col-md-3 col-sm-4 col-xs-12 no-padding-left pull-left xs-no-padding-right">
+                            <span style="color: gray"><i class="far fa-lightbulb fa-1x"></i></span>
+                            <span class="separator-line-verticle-large margin-ten-right bg-color vertical-align-top pull-right margin-two-top hidden-xs"></span>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-12 sm-no-padding-lr">
+                            <h5 class="text-medium margin-four-bottom text-extra-dark-gray alt-font display-block sm-margin-10px-bottom xs-margin-5px-bottom">퀴즈</h5>
+                            <p class="width-90 md-width-100 sm-padding-two-lr">퀴즈를 통해 기존에 잊고 살았던 기본 상식들을 상기시켜주고 작물게임에 필요한 도구를 제공합니다.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 xs-margin-30px-bottom xs-text-center wow fadeInUp last-paragraph-no-margin" data-wow-delay="0.2s">
+                        <div class="sec_div col-md-3 col-sm-4 col-xs-12 no-padding-left pull-left xs-no-padding-right">
+                            <span style="color: gray"><i class="fas fa-seedling fa-1x"></i></span>
+                            <span class="separator-line-verticle-large margin-ten-right bg-color vertical-align-top pull-right margin-two-top hidden-xs"></span>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-12 sm-no-padding-lr">
+                            <h5 class="text-medium margin-four-bottom text-extra-dark-gray alt-font display-block sm-margin-10px-bottom xs-margin-5px-bottom">게임</h5>
+                            <p class="width-90 md-width-100 sm-padding-two-lr">웹에서 원하는 씨앗을 골라 작물게임을 할 수 있는 동시에 수확에 성공하면 실제 씨앗을 제공합니다.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12 xs-text-center wow fadeInUp last-paragraph-no-margin" data-wow-delay="0.4s">
+                        <div class="sec_div col-md-3 col-sm-4 col-xs-12 no-padding-left pull-left xs-no-padding-right">
+                            <span style="color: gray"><i class="far fa-heart fa-1x"></i></span>
+                            <span class="separator-line-verticle-large margin-ten-right bg-color vertical-align-top pull-right margin-two-top hidden-xs"></span>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-12 sm-no-padding-lr">
+                            <h5 class="text-medium margin-four-bottom text-extra-dark-gray alt-font display-block sm-margin-10px-bottom xs-margin-5px-bottom">기부</h5>
+                            <p class="width-90 md-width-100 sm-padding-two-lr">작물게임 수확에 성공한 사용자들의 이름으로 매달 기부단체에 기부하여 참여의 기회를 제공합니다.</p>
+                        </div>
+                    </div>
+                    <!-- end feature box item -->
+                </div>
+            </div>
+        </section>
+        <!-- end feature box section -->
+    </div>
+</div>
+
+<div id="content_home2" class="mx-auto">
+
+<div class="text-center"><br/><br/><br/>
+    <b style="font-size:20px"><i>이번 달 기부 단체</i></b> <br/>
+    <hr align="center" style="border: solid 2px #99cc99; width:16%;"><br/><br/>
+   {# 190903 예림 수정 #}
+    <div class="card-deck">
+        {% for donationOrg in donationOrgs %}
+            {% if forloop.first %}
+            <div class="card1 wow fadeInUp card shadow" data-wow-delay="0.5s">
+            {% elif not forloop.first and not forloop.last %}
+            <div class="card2 wow fadeInUp card shadow" data-wow-delay="1s">
+            {% elif forloop.last %}
+            <div class="card3 wow fadeInUp card shadow" data-wow-delay="1.5s">
+            {% endif %}
+                <a href="{% url 'staff:donation' %}"><img class="card-img-top" src="{{ donationOrg.photo.url }}" alt="Card image" style="width:100%"></a>
+                <div class="card-body">
+                    <h4 class="card-title">{{ donationOrg.name }}</h4>
+                    <p class="card-text d-sm-none d-md-block">{{ donationOrg.desc }}</p>
+                    <a href="{% url 'staff:donation' %}" class="more">자세히 보기</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<br/><br/><br/><br/><br/><br/>
+<div class="text-center"><br/><br/><br/>
+    <b style="font-size:20px"><i>작물 키우기 BEST 3</i></b> <br/>
+  <hr align="center" style="border: solid 2px #99cc99; width:16%;"><br/><br/>
+    <div class="card-deck">
+        {% for key, value in diaries %}
+        <div class="card shadow">
+            <img class="card-img-top2" src="{{ key.photo.url }}" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">{{ key.name }}</h4>
+                <p class="card-text d-sm-none d-md-block">{{ value }}</p>
+{#                <a href="{% url 'staff:donation' %}" class="more">자세히 보기</a>#}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+{% endblock content %}

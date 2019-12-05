@@ -1,0 +1,21 @@
+.list_top {
+    width: 20px;
+    height:22px;
+}
+
+.dt {
+    display: inline-block;
+}
+.dd {
+    display: inline-block;
+}
+
+input#id_title{
+    width:50%;
+}
+
+.list_eye_icon{
+    width: 18px;
+    height:24px;
+    margin-top: -7px;
+}

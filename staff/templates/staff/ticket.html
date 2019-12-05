@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/ticket.css" %}{% endblock %}
+{% block extra_body %}
+<script src="{% static 'js/bootbox.min.js' %}"></script>
+<script src="{% static 'js/ticket.js' %}"></script>
+{% endblock %}
+{% block content %}
+<div  class="content">
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    <br> <br> <br> <br>
+    <h2 class="titlename"><b>응모권 추첨</b></h2>
+    <p>퀴즈를 맞춘 여러분을 위한 추첨 타임!</p>
+    <hr style="width: 300px;height: 4px; background-color: #99cc99;">
+    <br><br>
+    <hr align="center" style="border: solid 2px lightgrey; width:100%;">
+    <img class="left" src="{% static 'img/tic_left.png' %}" />
+    <div class="mypage_back1" style="background-color:#f6e8b1;">
+    <br />
+{#    응모권개수#}
+    <h4 class="ticket_num">{{ user_ticket }}</h4>
+        <br><br>
+            <div class="ticket_img">
+                {% for ticket in tickets %}
+                     <img  style="width: 280px;" src="{{ ticket.photo.url }}" class="img1"/>
+                {% endfor %}
+            </div>
+            <br><br><br>
+            <div class="ticket_name">
+                {% for ticket in tickets %}
+                     <h5>◎ {{ ticket.name }} 1명 </h5>
+                {% endfor %}
+            </div>
+        <br><br><br>
+        <form method="post">{% csrf_token %}
+            {% if user_ticket == 0 %}
+            <button class="mypage_btn2 btn btn-outline-success" onclick="needTicket()" type="button">응모하기</button>
+            {% else %}
+            <button class="mypage_btn2 btn btn-outline-success" name="ticketing" type="submit">응모하기</button>
+            {% endif %}
+            <p class="p1">* 응모권은 공정한 방식으로 랜덤 추천합니다. *</p>
+        </form>
+    </div>
+
+    <div class="bot2" style="text-align: center">
+        <hr align="center" style="border: solid 2px lightgrey; width:100%;">
+        <button class="btn1 btn btn-outline-success" onclick="history.back(-1);">BACK</button>
+        <button type="button" class="btn1 btn btn-outline-success" onclick="location.href='{% url 'home' %}'">Home</button>
+    </div>
+</div>
+{% endblock %}

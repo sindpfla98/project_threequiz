@@ -1,0 +1,25 @@
+.titlename{
+    margin-top: -200px;
+    color: #000000;
+    text-align: center;
+
+}
+.div_one {
+    background-color: rgb(246, 232, 177);
+    position: center;
+    top: -50px;
+    bottom: 0;
+    height: 850px;
+    width: 1440px;
+    margin: auto;
+    text-align: center;
+}
+.suhack {
+    width: 700px;
+    height: 700px;
+    margin-top: -130px;
+}
+.btn {
+    margin: 10px;
+    width: 30%;
+}

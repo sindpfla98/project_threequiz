@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/quiz.css" %}{% endblock %}
+
+{% block content %}
+<div style="width: 100%" class="content"> {# 190920 시인추가 #}
+    <br/><br/><br/><br/><br/><br/><br><br>
+    <br> <br> <br> <br>
+    <h2 class="titlename"><b>{{ quizSubs.name }}</b></h2>
+    <hr style="width: 200px;height: 4px; background-color: #99cc99;">
+    <br/>
+
+    <div class="jackmul_back" style="background-color:#ffffff;"><br/>
+        <img   src="{% static 'img/sketchbook.png' %}" class="sketchbook"/> {# 190920 시인추가 #}
+        <div class="pnum">
+        <div style="width:20%; height:60px; background-color: #FFFFFF; padding-top: 15px; display:inline;float:left;">
+        <h5 style="text-align: center"> {{ count }}/5</h5>
+        </div>
+        </div>
+        <br /><br /><br /><br /><br /><br />
+        <div>
+            <img class="yes_1" src="{% static 'img/NO.png' %}" />
+        </div>
+        <form method="POST" style="background-color: transparent">{% csrf_token %}
+            <button class="qu_li_di_bt1 next" name="next" type="submit"><img src="{% static 'img/next1.PNG' %}" class="quiz_real_rig_next1"/></button>
+        </form>
+    </div>
+
+</div>
+{% endblock %}

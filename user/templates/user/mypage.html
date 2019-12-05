@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}세바퀴{% endblock %}
+
+{% load staticfiles %}
+{% block extrastyle %}{% static "css/mypage.css" %}{% endblock %}
+{% block extra_body %}
+    {#    배송지 주소 #}
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="{% static 'js/mypage.js' %}">
+</script>
+{% endblock %}
+{% block content %}
+<div class="content">
+<br/><br/><br/><br/>
+    <h2>&nbsp;</h2>
+    <h3><strong>My Page</strong></h3>
+    <hr align="center" style="border: solid 2px #99cc99; width:100%;">
+    <br/><br/>
+    <h4><b>회원 정보</b></h4><hr><br/>
+    <div class="panel-body">
+        <form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
+            <p>이메일 &nbsp;{{ user.email }}</p>
+            <p>이&nbsp;&nbsp;&nbsp;름  &nbsp;{{ form.name }}</p>
+            <p>생년월일  &nbsp;{{ user.birth }}</p>
+            <p>등&nbsp;&nbsp;&nbsp;급 &nbsp;<img width="50px" src="{{ user.rank.photo.url }}"/>&nbsp;<a href="{% url 'user:rankinfo' %}"><img class="my_page_mulum_icon" src="{% static 'img/mulum.png' %}"></a></p>
+            <p>응모권&nbsp;&nbsp;&nbsp;{{ user.ticket }}개 <button class="mypage_btn4 btn btn-outline-success " type="button" onclick="location.href='{% url 'staff:ticket' pk=pk %}'">응모하기</button></p>
+            <p>휴대폰 &nbsp;{{ form.phone }}</p>
+            <p>프로필 {{ form.photo }}</p>
+            <p>주&nbsp;&nbsp;&nbsp;소&nbsp;
+            <input type="text" name="postcode" value="{{ form.postcode.value }}" required id="sample6_postcode" placeholder="우편번호"/></p>
+            <input type="button" class="adsearch btn btn-outline-success" onclick="sample6_execDaumPostcode()" value="검색하기"/>
+
+            <input class="address2" type="text" name="address" value="{{ form.address.value }}" required id="sample6_address" placeholder="주소"/>
+            <input class="address2" type="text" name="detail_address" value="{{ form.detail_address.value }}" required id="sample6_detailAddress" placeholder="상세주소"/>
+            <input class="address2" type="text" name="ref_address" value="{{ form.ref_address.value }}" required id="sample6_extraAddress" placeholder="참고항목"/>
+            <br /><br />
+            <button class= "bimil_btn" type="button" onclick="location.href='{% url 'user:password_change' %}'">비밀번호 변경하기</button> <br>
+             <br />
+            <a><button type="submit" class="mypage_btn2 btn btn-outline-success" onclick="needLogin()">변경사항 저장</button></a>
+        </form>
+    </div>
+    <br/>
+    <div>
+       <br/><h4><b>작물 일지</b></h4></b>
+          <table class="table">
+             <thead class="th">
+                <th >수확날짜</th>
+                <th>작물</th>
+                <th>배송현황</th>
+            </thead>
+              {% for diary in diarys %}
+            <tbody class="tb">
+                <tr>
+                    <td>{{ diary.date|date:"Y-m-d-D"}} </td>
+                    <td>{{ diary.seedState.seed.name }}</td>
+                    <td class="td3">{{ diary.delivery|default_if_none:"" }}</td>
+{#                        {{ diary.delivery|default:"" }}#}
+                </tr>
+            </tbody>
+              {% endfor %}
+    </table>
+         <button class="mypage_btn3 btn btn-outline-success" type="button" onclick="location.href='{% url 'plant:jakmulDiary' pk=user.pk %}'" style="float: right">더 보 기</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

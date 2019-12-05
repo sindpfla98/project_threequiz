@@ -1,0 +1,94 @@
+.panel-body {
+    width: 340px;
+    margin: 0 auto;
+}
+.my_page_mulum_icon{
+    width: 30px;
+}
+.jackmul_1ji h5{
+    display: inline;
+}
+.mypage_btn1 {
+    margin-left: 20px;
+    text-align: center;
+    width: 110px;
+    height:35px;
+    font-size: 15px;
+}
+ /* 변경사항 저장하기 버튼 css 시작 */
+.mypage_btn2 {
+    /*margin-left: 30px;*/
+    /*text-align: center;*/
+    /*width: 110px;*/
+    /*height:35px;*/
+    /*font-size: 15px;*/
+  margin-left: 23px;
+  background:rgb(153, 204, 153);
+  color:#fff;
+  border:none;
+  position:relative;
+  height:50px;
+  font-size:1.3em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+.mypage_btn2:hover {
+    background:#fff;
+    color:rgb(153, 204, 153);
+}
+.mypage_btn2:hover:before,.mypage_btn2:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: rgb(153, 204, 153);
+  transition:400ms ease all;
+}
+.mypage_btn2:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+.mypage_btn2:hover:before,.mypage_btn2:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+ /* 변경사항 저장하기 버튼 css 끝 */
+
+.mypage_btn3 {
+    width: 80px;
+    height:30px;
+    font-size: 15px;
+}
+.tb {
+    color:dimgray;
+}
+.td3 {
+    color: #94b24d;
+}
+.adsearch {
+    margin-left: 250px;
+    margin-top: -87px;
+}
+.address2 {
+    margin-left: 52px;
+    margin-bottom: 5px;
+}
+.mypage_btn4 {
+    margin-left: 20px;
+}
+/* 비밀번호 번경 버튼 css */
+.bimil_btn {
+    text-align: center;
+    margin-left: 60px;
+    background-color: #FFFFFF;
+    border: 0px;
+}
+.bimil_btn:hover {
+    color: #01b15e;
+}
